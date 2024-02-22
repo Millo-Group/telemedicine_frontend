@@ -29635,7 +29635,7 @@ body .main-header .navbar .nav > li.search-box > a:focus {
 .customtab2 li a.nav-link:active,
 .customtab2 li a.nav-link:focus,
 .customtab2 li a.nav-link.active {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 @media (max-width: 767px) {

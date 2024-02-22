@@ -2572,13 +2572,13 @@ Theme Primary Color
 .theme-primary .nav-tabs .nav-link.active {
   border-bottom-color: #5156be;
   background-color: #5156be;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .theme-primary .nav-tabs .nav-link.active:hover,
 .theme-primary .nav-tabs .nav-link.active:focus {
   border-bottom-color: #5156be;
   background-color: #5156be;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .theme-primary .nav-tabs .nav-item.open .nav-link {
   border-bottom-color: #5156be;
