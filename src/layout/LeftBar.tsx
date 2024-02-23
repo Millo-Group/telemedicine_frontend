@@ -14,7 +14,7 @@ const LeftBar = () => {
             <div className="multinav-scroll" style={{ height: "100%" }}>
               <ul className="sidebar-menu" data-widget="tree">
                 <li>
-                  <a href="/">
+                  <a href="/#">
                     <img
                       src={DashboardIcon}
                       alt="settings"
@@ -24,7 +24,7 @@ const LeftBar = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/">
+                  <a href="/#">
                     <img
                       src={AppoitmentIcon}
                       alt="settings"
@@ -34,7 +34,7 @@ const LeftBar = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/">
+                  <a href="/#">
                     <img
                       src={PatientIcon}
                       alt="settings"
@@ -44,7 +44,7 @@ const LeftBar = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/">
+                  <a href="/#">
                     <img
                       src={ReportsIcon}
                       alt="settings"

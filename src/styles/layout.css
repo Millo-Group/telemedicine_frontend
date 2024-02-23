@@ -1,5 +1,5 @@
-@import url(color_theme.css);
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
+@import url(color_theme.css);
 
 .wrapper {
   height: 100%;
@@ -10285,7 +10285,9 @@ Margin property
 .mb-5 {
   margin-bottom: 5px !important;
 }
-
+.margin-b-5 {
+  margin-bottom: 5px !important;
+}
 .mb-10 {
   margin-bottom: 10px !important;
 }
@@ -10611,6 +10613,9 @@ Margin property
 }
 
 .me-5 {
+  margin-right: 5px !important;
+}
+.margin-right-5 {
   margin-right: 5px !important;
 }
 
@@ -26682,7 +26687,7 @@ Height property
   -o-transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   -webkit-transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-  margin-left: 19.29rem;
+  margin-left: 16.875rem;
   z-index: 820;
 }
 
@@ -26786,7 +26791,7 @@ Height property
 
 .content {
   min-height: 250px;
-  padding: 1.5rem 1.5rem 0px 1.5rem;
+  padding: 21px 21px 0px 21px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -26919,7 +26924,7 @@ Height property
   position: relative;
 }
 .main-header div.logo-box {
-  width: 17.29rem;
+  width: 270px;
   float: left;
   -webkit-transition: -webkit-transform 0.3s ease-in-out, width 0.3s ease-in-out;
   -moz-transition: -moz-transform 0.3s ease-in-out, width 0.3s ease-in-out;
@@ -27015,7 +27020,7 @@ Height property
   -webkit-transition: margin-left 0.3s ease-in-out;
   transition: margin-left 0.3s ease-in-out;
   margin-bottom: 0;
-  margin-left: 19.29rem;
+  margin-left: 16.875rem;
   min-height: 80px;
   border-radius: 0;
   border-bottom: 1px solid #efeffd;
@@ -27882,7 +27887,7 @@ body .main-header .navbar .nav > li.search-box > a:focus {
   left: 0;
   padding-top: 80px;
   min-height: 100%;
-  width: 17.29rem;
+  width: 270px;
   z-index: 810;
   -webkit-transition: -webkit-transform 0.3s ease-in-out, width 0.3s ease-in-out;
   -moz-transition: -moz-transform 0.3s ease-in-out, width 0.3s ease-in-out;
@@ -28589,7 +28594,7 @@ body .main-header .navbar .nav > li.search-box > a:focus {
 .sidebar-menu {
   white-space: nowrap;
   overflow: hidden;
-  font-size:14px;
+  font-size: 14px;
 }
 .sidebar-menu > li.header {
   white-space: nowrap;
@@ -28906,7 +28911,7 @@ body .main-header .navbar .nav > li.search-box > a:focus {
 @media (min-width: 768px) {
   .fixed .multinav {
     position: fixed;
-    width: 17.29rem;
+    width: 270px;
     padding-bottom: 0;
     height: calc(100% - 90px);
   }
@@ -31629,7 +31634,7 @@ ul.panel-actions > li:first-child {
 }
 
 .avatar-lg {
-  width: 48px;
+  width: 48px !important;
   height: 48px;
   line-height: 48px;
   font-size: 1.286rem;
@@ -34435,7 +34440,7 @@ time {
 .side-bx .title-bx {
   margin-top: -70px;
   margin-bottom: 0;
-  font-size:18px;
+  font-size: 18px;
 }
 
 .datepicker.datepicker-dropdown {
@@ -34486,10 +34491,11 @@ time {
 }
 
 .owl-sl .owl-nav {
-  display: flex;
+  display: flex !important;
   position: absolute;
-  top: -70px;
+  top: -78px;
   right: 0;
+  margin-top: 0px !important;
 }
 .owl-sl .owl-nav .owl-prev,
 .owl-sl .owl-nav .owl-next {
@@ -34499,7 +34505,12 @@ time {
   text-align: center;
   line-height: 30px;
 }
-
+.owl-sl .owl-nav button {
+  font-size:2.143rem !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
 /*form-element*/
 .form-element .input-group .input-group-addon {
   border: none;
@@ -35591,11 +35602,19 @@ textarea.form-control {
 .box-header {
   color: #172b4c;
   display: block;
-  padding: 1.5rem;
   position: relative;
+  padding: 16px;
   border-bottom: 1px solid #efeffd;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+.box-header button {
+  background-color: white !important;
+  padding: 0px;
+  box-shadow: none !important;
+}
+.box-header button:focus {
+  box-shadow: none !important;
 }
 .box-header.without-border {
   border-bottom: none;
@@ -42586,4 +42605,8 @@ img.online {
 
 .icon-menu > line:nth-child(odd) {
   opacity: 0.3;
+}
+
+.carousal-container .avatar-lg{
+  border-radius:50%;
 }
