@@ -1,0 +1,22 @@
+node_modules
+
+# Ignore build artifacts
+build
+dist
+coverage
+
+# Ignore development files and directories
+src/**/*.test.js
+src/**/*.test.ts
+src/**/*.test.tsx
+*.log
+*.md
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.npm
+.npmignore
+yarn-error.log
