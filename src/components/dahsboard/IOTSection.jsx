@@ -110,7 +110,7 @@ const IOTSection = () => {
                     role="tabpanel"
                   >
                     <div className="p-15 ">
-                      <h4 className="box-title margin-b-5 fs-16">Heart ECG</h4>
+                      <h4 className="box-title margin-b-5 fs-16">Heart ECG.</h4>
                       <canvas id="ecg" className="h-150 w-p100"></canvas>
                     </div>
                   </div>
