@@ -12,3 +12,9 @@ services:
     environment:
       - NODE_ENV=development
     command: npm run start
+    networks:
+      inverseproxy_shared:
+
+networks:
+  inverseproxy_shared:
+    external: true
