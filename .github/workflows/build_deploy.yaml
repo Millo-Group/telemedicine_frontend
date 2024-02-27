@@ -37,20 +37,18 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      #- name: Deploy latest image
-        #uses: appleboy/ssh-action@v1.0.3
-        #env:
-          #PAT: ${{ secrets.PAT }}
-        #with:
-          #host: ${{ secrets.HOST }}
-          #username: ${{ secrets.USER }}
-          #key: ${{ secrets.KEY }}
-          #envs: PAT
-          #script: |
-            #cd infinityclinic-17-test
-            #git pull origin master
-            #docker compose exec db pg_dump -U odoo prod|gzip > /tmp/prod_$(date +%Y%m%d).sql.gz
-            #echo $PAT | docker login ghcr.io -u ssaid --password-stdin
-            #docker compose pull
-            #docker compose run odoo click-odoo-update
-            #docker compose up -d
+      - name: Deploy latest image
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          PAT: ${{ secrets.PAT }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.KEY }}
+          envs: PAT
+          script: |
+            cd telemedicine_frontend
+            GIT_SSH_COMMAND='ssh -i ~/.ssh/telemedicinefend -o IdentitiesOnly=yes' git pull origin layout
+            echo $PAT | docker login ghcr.io -u ssaid --password-stdin
+            docker compose pull
+            docker compose up -d
