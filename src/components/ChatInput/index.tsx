@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styles from "./index.module.css";
 import IconButton from "../IconButton";
-import { ReactComponent as AttachmentIcon } from "../../assets/images/appoitment.svg";
-import { ReactComponent as MicIcon } from "../../assets/images/mic.svg";
 import useChat from "../../hooks/useChat";
 
 function ChatInput() {
@@ -16,19 +14,26 @@ function ChatInput() {
 
   return (
     <div className={styles.root}>
-      <IconButton>
-        <AttachmentIcon />
-      </IconButton>
-      <textarea
+      <input
         onChange={(e) => setMessage(e.target.value)}
         value={message}
-        className={styles.input}
-        placeholder="Type"
-        rows={3}
-      ></textarea>
-      <IconButton variant="primary" onClick={handleSendMessage}>
-        <MicIcon />
+        className="form-control b-0"
+        style={{padding:'10px 10.5px'}}
+        placeholder="Say Something..."
+        type="text"
+      ></input>
+      <div className={`d-flex justify-content-between aling-items-center mt-md-0 ${styles.hoverclass}`}>
+      <IconButton className={`btn  ${styles.textbutton}`}>
+        <span className="material-symbols-outlined" style={{fontSize:'15px'}}>link</span>
       </IconButton>
+      <IconButton className={`btn  ${styles.textbutton}`} onClick={handleSendMessage}>
+      <span className="material-symbols-outlined" style={{fontSize:'15px'}}>mic</span>
+      </IconButton>
+          <IconButton className={`btn  ${styles.textbutton}`}>
+          <span className="material-symbols-outlined" style={{fontSize:'15px'}}>send</span>
+      </IconButton>
+      </div>
+
     </div>
   );
 }

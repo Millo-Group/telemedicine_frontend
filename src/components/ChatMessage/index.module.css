@@ -1,5 +1,5 @@
 .root {
-  padding: 6px 14px;
+  padding: 10px;
   border-radius: 10px;
   max-width: 227px;
   width: max-content;
@@ -8,15 +8,19 @@
 }
 
 .incoming {
-  background-color: #dfe7f6;
-  color: #000;
+  background-color: #EBEDF3;
+  color: #172B4C;
+  margin-bottom: 21px;
+  font-size: 14px;
+  padding: 21px;
   text-align: left;
   border-bottom-left-radius: 0 !important;
 }
 .outgoing {
-  background-color: #6750a4;
-  color: #fff;
-  text-align: right;
+  background-color: #fff;
+  color: #172B4C;
+  font-size: 14px;
+  padding: 21px;
   margin-left: auto;
   border-bottom-right-radius: 0 !important;
 }

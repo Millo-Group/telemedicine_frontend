@@ -18,13 +18,14 @@ const HumanBodyAccordian = () => {
                 >
                   Human Body
                 </button>
-                <div
+                <a
                   className="d-flex justify-content-center align-items-center"
                   data-bs-toggle="modal"
                   role="button"
+                  href="#Hmodalid"
                 >
                   <img src={FullScreenIcon} alt="full-screen" />
-                </div>
+                </a>
               </div>
             </div>
             <div
@@ -41,7 +42,7 @@ const HumanBodyAccordian = () => {
           </div>
         </div>
         <div
-          className="modal fade"
+          className="modal fade p-0"
           id="Hmodalid"
           aria-hidden="true"
           aria-labelledby="Hmodalid"
@@ -51,13 +52,13 @@ const HumanBodyAccordian = () => {
             style={{ maxWidth: "100%" }}
           >
             <div className="modal-content" style={{ height: "100vh" }}>
-              <div className="accordion mb-20" id="accordionExampleOne">
+              <div className="accordion" id="accordionExampleOne">
                 <div className="accordion-item">
-                  <div className="box-header with-border custom-space">
-                    <div className="d-flex gap-3 align-items-center">
+                  <div className="box-header custom-space">
+                    <div className="d-flex gap-3 align-items-center border-0">
                       <button
                         className="accordion-button"
-                        type="button"
+                        
                         data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo"
                         aria-expanded="true"
@@ -66,13 +67,14 @@ const HumanBodyAccordian = () => {
                         Human Body
                       </button>
                       <div className="d-flex justify-content-center align-items-center">
-                        <div
+                        <a
                           className="primary"
                           data-bs-dismiss="modal"
                           aria-label="Close"
-                        >
+                          href="#Hmodalid"
+                  >
                           <img src={FullScreenIcon} alt="full-screen" />
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -81,7 +83,7 @@ const HumanBodyAccordian = () => {
                     className="accordion-collapse collapse show"
                     data-bs-parent="#accordionExampleOne"
                   >
-                    <div className="accordion-body">
+                    <div className="accordion-body p-0 border-0">
                       <div className="text-center">
                         <img src={HumanAnotomyPicture} alt="pic" />
                       </div>

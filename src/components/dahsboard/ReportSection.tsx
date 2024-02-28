@@ -38,7 +38,7 @@ const PatientReport: React.FC<Props> = ({ patientId }) => {
                 >
                   Reports 1
                 </button>
-                <div className="d-flex justify-content-center align-items-center" data-bs-toggle="modal"   role="button"><img src={FullScreenIcon} /></div>
+                <a className="d-flex justify-content-center align-items-center" data-bs-toggle="modal" href="#reportmodal"  role="button"><img src={FullScreenIcon} /></a>
               </div>
             </div>
             <div
@@ -154,7 +154,7 @@ const PatientReport: React.FC<Props> = ({ patientId }) => {
                 >
                   Reports 1
                 </button>
-                <div  className="primary d-flex justify-content-center align-items-center" data-bs-dismiss="modal" aria-label="Close"><img src={FullScreenIcon} /></div>
+                <a className="primary d-flex justify-content-center align-items-center" href="#reportmodal" data-bs-dismiss="modal" aria-label="Close"><img src={FullScreenIcon} /></a>
               </div>
             </div>
             <div

@@ -25,7 +25,7 @@ const Dashboard = () => {
             </div>
             <div className="col-xxxl-5 col-xl-5 col-12"></div>
             {/* Reports */}
-            <div className="col-xxxl-4 col-xl-4 col-12">
+            <div className="col-xxxl-4 col-xl-4 col-12 p-0">
               <IOTSection patientId="30" />
               <HumanAccordionSection />
               <ReportSection patientId="30"  />

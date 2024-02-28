@@ -38,13 +38,14 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                 >
                   IOT
                 </button>
-                <div
+                <a
                   className="d-flex justify-content-center align-items-center"
                   data-bs-toggle="modal"
                   role="button"
+                  href="#iotmodal"
                 >
                   <img src={FullScreenIcon} alt="full-screen" />
-                </div>
+                </a>
               </div>
             </div>
             <div
@@ -206,13 +207,14 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                         IOT
                       </button>
                       <div className="d-flex justify-content-center align-items-center">
-                        <div
+                        <a
                           className="primary"
                           data-bs-dismiss="modal"
                           aria-label="Close"
+                          href ="#iotmodal"
                         >
                           <img src={FullScreenIcon} alt="full-screen" />
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>

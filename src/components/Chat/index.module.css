@@ -2,9 +2,11 @@
   /* width: 275px; */
   background-color: white;
   -webkit-user-select: none;
+  padding: 0px 13px;
   -ms-user-select: none;
+  border-end-start-radius: 10px;
+  border-end-end-radius: 10px;
   user-select: none;
-  padding: 13px;
 }
 .chat_list::-webkit-scrollbar {
   display: none;
@@ -23,7 +25,6 @@
   overflow-anchor: auto !important;
 }
 .footer {
-  border-top: 1px solid #eaddff;
   padding-top: 13px;
 }
 .chat_end {
