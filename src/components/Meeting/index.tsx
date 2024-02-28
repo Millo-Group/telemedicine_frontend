@@ -1,5 +1,5 @@
 import { JaaSMeeting } from "@jitsi/react-sdk";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import styles from "./index.module.css";
 import Chat from "../Chat";
 import useChat from "../../hooks/useChat";
@@ -10,11 +10,12 @@ type Props = {
 };
 
 function Meeting(props: Props) {
-  const navigate = useNavigate();
-  const { setApi } = useChat();
+  // const navigate = useNavigate();
+  const { setApi ,setCurrentAppointment} = useChat();
 
   const readyToClose = () => {
-    navigate("/");
+    setCurrentAppointment({})
+    
   };
   const toolbarButtons = [
     "camera",

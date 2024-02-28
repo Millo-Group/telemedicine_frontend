@@ -6,9 +6,10 @@ function Join() {
   const { room = "" } = useParams();
   const { state } = useLocation();
   console.log(state, "state");
-  // if (!state) return <Navigate to="/" />;
-
-  return <Meeting roomName={room} jwt={state.jwt} />;
+  // if (!state) return <Navigate to="/authenticate" />;
+  // Set JWT when we have real one
+  // jwt={state?.jwt}
+  return <Meeting roomName={room} jwt={"1111"} />;
 }
 
 export default Join;

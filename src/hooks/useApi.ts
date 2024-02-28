@@ -5,6 +5,8 @@ function useApi() {
   const baseURL = "http://localhost:8000/api";
 
   const instance = axios.create({ baseURL });
+  const jwt = localStorage.getItem('token')
+  instance.defaults.headers.common.Authorization = `Bearer ${jwt}`
 
   instance.interceptors.request.use((config) => {
     if (config.data) {

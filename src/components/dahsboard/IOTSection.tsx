@@ -1,7 +1,26 @@
 import FullScreenIcon from "../../assets/images/full-screen-icon.svg";
 import TemperatureImage from "../../assets/images/check-2.png";
+import useApi from "../../hooks/useApi";
+import { useEffect, useState } from "react";
+interface Props {
+  patientId: string;
+}
 
-const IOTSection = () => {
+const IOTSection: React.FC<Props> = ({ patientId }) => {
+  let [IOTData, setIOTData] = useState<any>([]);
+  const api = useApi();
+  const getPatientIOTReports = async () => {
+    try {
+      let data = await api.get(`iot/?patient_id=${patientId}`);
+      setIOTData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPatientIOTReports();
+  }, []);
   return (
     <>
       <div className="row ">

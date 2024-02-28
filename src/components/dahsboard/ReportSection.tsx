@@ -1,7 +1,26 @@
 import FullScreenIcon from "../../assets/images/full-screen-icon.svg";
 // import ReportPDF from '../../assets/pdf/bridges-forms-referral-letter.pdf'
 import XrayImg from "../../assets/images/x-ray.png";
-const PatientReport = () => {
+import useApi from "../../hooks/useApi";
+import { useEffect, useState } from "react";
+interface Props {
+  patientId: string;
+}
+const PatientReport: React.FC<Props> = ({ patientId }) => {
+  let [reportsData, setReportsData] = useState<any>([]);
+  const api = useApi();
+  const getPatientIOTReports = async () => {
+    try {
+      let data = await api.get(`reports/?patient_id=${patientId}`);
+      setReportsData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPatientIOTReports();
+  }, []);
   return (
     <>
       <div className="row ">

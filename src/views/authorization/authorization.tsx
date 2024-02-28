@@ -30,7 +30,8 @@ function Authorization() {
       let data = {
         room_name: 123,
         jitsi_jwt: "1111",
-        token: "123",
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyMywibmFtZSI6IkRhbiBNYXllciwgTS5EIiwiZW1haWwiOiJNRDVAbWlsbG8tZ3JvdXAuY29tIn19.W73UWFhEF3JvYv2IyGxqk5B-DjGbidzXLbNa8gzgfwY",
       };
       localStorage.setItem("token", data.token);
       navigate(`/dashboard/${data.room_name}`, {

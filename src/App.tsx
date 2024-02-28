@@ -9,10 +9,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          
+          <Route path="/" element={<Authorization />} />
           <Route path="/authenticate" element={<Authorization />} />
-          <Route path="/" element={<MainLayout />}>
+          <Route path="dashboard/:room" element={<MainLayout />}>
             <Route index element={<Dashboard />} />
-            <Route path="dashboard/:room" element={<Dashboard />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

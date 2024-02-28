@@ -3,8 +3,11 @@ import HumanAccordionSection from "../../components/dahsboard/HumanAccordionSect
 import ReportSection from "../../components/dahsboard/ReportSection";
 import DoctorAppointments from "../../components/dahsboard/DoctorAppointments";
 import MeetingRoom from "../../components/Room/join";
+import useChat from "../../hooks/useChat";
 
 const Dashboard = () => {
+  const { currentAppointment } = useChat();
+
   return (
     <>
       <div className="content-wrapper">
@@ -17,15 +20,15 @@ const Dashboard = () => {
           </div>
           {/* Main Section */}
           <div className="row">
-            <div className="col-xxxl-3 col-xl-3 col-12 video-call">
-              <MeetingRoom />
+            <div className="col-xxxl-3 col-xl-3 col-12 ">
+              {!!Object.keys(currentAppointment).length && <MeetingRoom />}
             </div>
             <div className="col-xxxl-5 col-xl-5 col-12"></div>
             {/* Reports */}
             <div className="col-xxxl-4 col-xl-4 col-12">
-              <IOTSection />
+              <IOTSection patientId="30" />
               <HumanAccordionSection />
-              <ReportSection />
+              <ReportSection patientId="30"  />
             </div>
           </div>
         </section>
