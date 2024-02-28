@@ -11,7 +11,7 @@ export default function Dashboard() {
     <>
       <div
         className={`${
-          isLeftBarCollapsed ? "sidebar-collapse" : ""
+          !isLeftBarCollapsed ? "sidebar-collapse" : ""
         } hold-transition dark-skin sidebar-mini theme-primary fixed  `}
       >
         <Header toggleLeftBarHandler={toggleLeftBarHandler} />

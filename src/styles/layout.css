@@ -1313,7 +1313,10 @@ code {
 .input-group-append {
   display: flex;
 }
-
+#button-addon3,
+#button-addon3:active {
+  border: none;
+}
 .media {
   display: flex;
   align-items: flex-start;
@@ -34506,7 +34509,7 @@ time {
   line-height: 30px;
 }
 .owl-sl .owl-nav button {
-  font-size:2.143rem !important;
+  font-size: 2.143rem !important;
   display: flex !important;
   justify-content: center;
   align-items: center;
@@ -42607,6 +42610,202 @@ img.online {
   opacity: 0.3;
 }
 
-.carousal-container .avatar-lg{
+.carousal-container .avatar-lg {
+  border-radius: 50%;
+}
+.input-group > .form-control:focus {
+  z-index: 0 !important;
+}
+
+/* Meeting */
+.admin-menu-box {
+  display:block;
+  max-width:180px;
+  margin:auto;
+  text-align:center;
+}
+
+.admin-menu-box i {
+  font-size:26px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .admin-menu-box h5 {
+    display:none;
+  }
+  
+  .admin-menu-box .box-body {
+    padding:0px !important;
+    padding-top:10px !important;
+    padding-bottom:5px !important;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .mobile-account-name {
+    display:none;
+  }
+}
+
+.me-15 .avatar {
   border-radius:50%;
+}
+
+.mds-36 {
+  font-size:36px;
+}
+.mds-24 {
+  font-size:24px;
+}
+
+.ribbon-box .ribbon-two span {
+  font-size:12px !important;
+}
+
+.patient-profile-avatar {
+  display:block;
+  text-align:center;
+}
+
+.patient-profile-avatar img {
+  border-radius:50%;
+  max-width:160px;
+  min-height:160px;
+}
+
+.temp-tab {
+  display:inline-block;
+}
+
+.video-call {
+  position:relative;
+  display:block;
+  border-radius:0.375rem;
+  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.05);
+}
+
+.doctor-video {
+  position:absolute;
+  top:20px;
+  left:20px;
+}
+
+.videocall-icons {
+  background:#00AFF0;
+  display:block;
+  text-align:center;
+  padding:10px;
+}
+
+.videocall-icons ul {
+  list-style:none;
+  padding:0px;
+  margin:0px;
+}
+
+.videocall-icons ul li {
+  display:inline-block;
+  margin-left:5px;
+  margin-right:5px;
+}
+
+.videocall-icons ul li a {
+  width:40px;
+  height:40px;
+  display:block;
+  background:#fff;
+  border-radius:50%;
+  color:#6750A4;
+}
+
+.videocall-icons ul li a:hover {
+  background:#fbfaff;
+  color:#00AFF0;
+}
+
+.videocall-icons ul li a span {
+  display:inline-block;
+  margin-top:7px;
+}
+
+.fullscreen-video {
+  position:absolute;
+  top:20px;
+  right:20px;
+}
+
+.fullscreen-video a {
+  width:40px;
+  height:40px;
+  display:block;
+  background:#fff;
+  border-radius:50%;
+  color:#6750A4;
+  text-align:center;
+}
+
+.fullscreen-video a span {
+  display:inline-block;
+  margin-top:7px;
+}
+
+.accordion-button:focus {
+  outline:0;
+  border:0px none;
+  border-color:transparent;
+}
+
+.telemedicine .accordion-button {
+  border:1px solid #E0E0E0;
+  border-radius:5px;
+  background-color:#DFE7F6;
+  color:#6750A4;
+}
+
+.accordion-flush .accordion-item .accordion-button, .accordion-flush .accordion-item .accordion-button.collapsed {
+  border-radius:5px;
+}
+
+.accordion-button {
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+.accordion-body {
+  border:1px solid #E0E0E0;
+  border-radius:5px;
+  border-top-left-radius:0px;
+  border-top-right-radius:0px;
+}
+
+.bglight-green {
+  padding:10px;
+  background-color:#D0EDDB;
+}
+
+.iot-icon-float {
+  position:relative;
+}
+
+.float-end {
+  position:absolute;
+  right:20px;
+  top:20px;
+  
+}
+
+.telemedicine {
+  margin-top:-10px;
+}
+
+.cd-horizontal-timeline {
+  margin:0 !important;
+}
+
+.events ol li a {
+  width:15%;
+}
+
+.cd-horizontal-timeline .events-content {
+  margin-top:0px;
 }

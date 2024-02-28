@@ -1,16 +1,16 @@
 import FullScreenIcon from "../../assets/images/full-screen-icon.svg";
+// import ReportPDF from '../../assets/pdf/bridges-forms-referral-letter.pdf'
 import XrayImg from "../../assets/images/x-ray.png";
-import ReportPDF from '../../assets/pdf/bridges-forms-referral-letter.pdf'
 const PatientReport = () => {
   return (
     <>
-      <div classNameName="row ">
-        <div class="accordion mb-20" id="accordionExampleTwo">
+      <div className="row ">
+        <div className="accordion mb-20" id="accordionExampleTwo">
           <div className="accordion-item">
-            <div class="box-header with-border custom-space">
+            <div className="box-header with-border custom-space">
               <div className="d-flex gap-3 align-items-center">
                 <button
-                  class="accordion-button"
+                  className="accordion-button"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseThree"
@@ -19,15 +19,15 @@ const PatientReport = () => {
                 >
                   Reports 1
                 </button>
-                <div className="d-flex justify-content-center align-items-center" data-bs-toggle="modal" href="#reportmodal"  role="button"><img src={FullScreenIcon} /></div>
+                <div className="d-flex justify-content-center align-items-center" data-bs-toggle="modal"   role="button"><img src={FullScreenIcon} /></div>
               </div>
             </div>
             <div
               id="collapseThree"
-              class="accordion-collapse collapse show"
+              className="accordion-collapse collapse show"
               data-bs-parent="#accordionExampleTwo"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 <ul
                   className="nav nav-tabs customtab2 nav-fill mt-10"
                   role="tablist"
@@ -96,7 +96,7 @@ const PatientReport = () => {
                     role="tabpanel"
                   >
                     <div className="p-15">
-                    <embed src={ReportPDF} width="100%" height="100%" />
+                    {/* <embed src={ReportPDF} width="100%" height="100%" /> */}
                     </div>
                   </div>
                   <div className="tab-pane" id="messages7" role="tabpanel">
@@ -118,15 +118,15 @@ const PatientReport = () => {
           </div>
         </div>
       </div>
-      <div className="modal fade" id="reportmodal" aria-hidden="true" aria-labelledby="reportmodal" tabindex="-1">
+      <div className="modal fade" id="reportmodal" aria-hidden="true" aria-labelledby="reportmodal" >
             <div className="modal-dialog modal-dialog-centered m-0" style={{maxWidth:'100%'}}>
                 <div className="modal-content" style={{height:'100vh'}}>
-                <div class="accordion mb-20" id="accordionExampleTwo">
+                <div className="accordion mb-20" id="accordionExampleTwo">
           <div className="accordion-item">
-            <div class="box-header with-border custom-space">
+            <div className="box-header with-border custom-space">
               <div className="d-flex gap-3 align-items-center">
                 <button
-                  class="accordion-button"
+                  className="accordion-button"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseThree"
@@ -135,15 +135,15 @@ const PatientReport = () => {
                 >
                   Reports 1
                 </button>
-                <div type="" className="primary d-flex justify-content-center align-items-center" data-bs-dismiss="modal" aria-label="Close"><img src={FullScreenIcon} /></div>
+                <div  className="primary d-flex justify-content-center align-items-center" data-bs-dismiss="modal" aria-label="Close"><img src={FullScreenIcon} /></div>
               </div>
             </div>
             <div
               id="collapseThree"
-              class="accordion-collapse collapse show"
+              className="accordion-collapse collapse show"
               data-bs-parent="#accordionExampleTwo"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 <ul
                   className="nav nav-tabs customtab2 nav-fill mt-10"
                   role="tablist"
@@ -212,7 +212,7 @@ const PatientReport = () => {
                     role="tabpanel"
                   >
                     <div className="p-15">
-                    <embed src={ReportPDF} width="100%" height="100%" />
+                    {/* <embed src={ReportPDF} width="100%" height="100%" /> */}
                     </div>
                   </div>
                   <div className="tab-pane" id="report2" role="tabpanel">
