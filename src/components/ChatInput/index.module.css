@@ -6,40 +6,26 @@
   border-radius: 10px;
   overflow: hidden;
   padding: 5px;
-  column-gap: 8px;
   border: 1px solid #566f9e;
 }
-
 .input::-webkit-scrollbar {
   display: none;
 }
-
-.input {
-  padding: 10px;
-  height: auto;
-  box-sizing: border-box;
-  outline: none;
-  border: none;
-  color: #212529;
-  font-weight: 400;
-  font-size: 14px;
-  background-color: #fff;
-  padding: 0.375rem 0.75rem;
-  border-radius: 5px;
-  resize: none;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  }
   .textbutton{
-    background: #fff !important;
-    border-radius: 50%;
+    /* background: #f3f6f9 !important; */
+    border-radius: 50% !important;
     padding: 0px;
     margin-right: 10px;
     color:#6c757d;
-    border-color: #f3f6f9 !important;
+    border: 1px solid #f3f6f9 !important;
     box-shadow: #f3f6f9;
+    font-size: 15px;
   }
   .hoverclass :hover{
     color: #fff;
     background:#6c757d !important;
   }
+.sendButtonhover :hover{
+  background-color: #cccccfde;
+  border-radius: 50px;
+}

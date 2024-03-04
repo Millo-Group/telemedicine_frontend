@@ -137,7 +137,7 @@ const PatientReport: React.FC<Props> = ({ patientId }) => {
           </div>
         </div>
       </div>
-      <div className="modal fade" id="reportmodal" aria-hidden="true" aria-labelledby="reportmodal" >
+      <div className="modal fade p-0" id="reportmodal" aria-hidden="true" aria-labelledby="reportmodal" >
             <div className="modal-dialog modal-dialog-centered m-0" style={{maxWidth:'100%'}}>
                 <div className="modal-content" style={{height:'100vh'}}>
                 <div className="accordion mb-20" id="accordionExampleTwo">

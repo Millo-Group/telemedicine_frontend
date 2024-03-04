@@ -18,21 +18,23 @@ function ChatInput() {
         onChange={(e) => setMessage(e.target.value)}
         value={message}
         className="form-control b-0"
-        style={{padding:'10px 10.5px'}}
-        placeholder="Say Something..."
+        style={{padding:'10px 10.5px',fontFamily:'serif',boxShadow:'none'}}
+        placeholder="Say something..."
         type="text"
       ></input>
-      <div className={`d-flex justify-content-between aling-items-center mt-md-0 ${styles.hoverclass}`}>
-      <IconButton className={`btn  ${styles.textbutton}`}>
-        <span className="material-symbols-outlined" style={{fontSize:'15px'}}>link</span>
+      <div className={`d-flex justify-content-between ${styles.hoverclass}`}>
+      <IconButton className={`material-symbols-outlined  ${styles.textbutton}`}>
+        link
       </IconButton>
-      <IconButton className={`btn  ${styles.textbutton}`} onClick={handleSendMessage}>
-      <span className="material-symbols-outlined" style={{fontSize:'15px'}}>mic</span>
-      </IconButton>
-          <IconButton className={`btn  ${styles.textbutton}`}>
-          <span className="material-symbols-outlined" style={{fontSize:'15px'}}>send</span>
+      <IconButton className={`material-symbols-outlined ${styles.textbutton}`}>
+      mic
       </IconButton>
       </div>
+        <div className={styles.sendButtonhover} onClick={handleSendMessage}>
+          <IconButton className="material-symbols-outlined">
+          send
+      </IconButton>
+        </div>
 
     </div>
   );

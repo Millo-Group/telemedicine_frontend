@@ -182,7 +182,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
           </div>
         </div>
         <div
-          className="modal fade"
+          className="modal fade p-0"
           id="iotmodal"
           aria-hidden="true"
           aria-labelledby="iotmodal"
