@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Spinner from "../../components/Spinner";
 import Box from "../../components/Box";
 import useApi from "../../hooks/useApi";
@@ -22,17 +22,11 @@ function Authorization() {
 
   const authUser = async (params: AuthPayload) => {
     try {
-      // const { data } = await api.post<{
-      //   token: string;
-      //   jitsi_jwt: string;
-      //   room_name: string;
-      // }>("/authenticate", params);
-      let data = {
-        room_name: 123,
-        jitsi_jwt: "1111",
-        token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyMywibmFtZSI6IkRhbiBNYXllciwgTS5EIiwiZW1haWwiOiJNRDVAbWlsbG8tZ3JvdXAuY29tIn19.W73UWFhEF3JvYv2IyGxqk5B-DjGbidzXLbNa8gzgfwY",
-      };
+      const { data } = await api.post<{
+        token: string;
+        jitsi_jwt: string;
+        room_name: string;
+      }>("/authenticate", params);
       localStorage.setItem("token", data.token);
       navigate(`/dashboard/${data.room_name}`, {
         state: {
@@ -43,7 +37,6 @@ function Authorization() {
       console.log(error);
     }
   };
-
   useEffect(() => {
     if (event_id != null && (employee_id != null || customer_id != null)) {
       authUser({
@@ -54,7 +47,7 @@ function Authorization() {
     } else {
       navigate("/");
     }
-  }, []);
+  }, [event_id, employee_id, customer_id]);
 
   return (
     <Box

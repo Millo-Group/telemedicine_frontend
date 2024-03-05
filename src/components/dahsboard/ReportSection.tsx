@@ -11,7 +11,7 @@ const PatientReport: React.FC<Props> = ({ patientId }) => {
   const api = useApi();
   const getPatientIOTReports = async () => {
     try {
-      let data = await api.get(`reports/?patient_id=${patientId}`);
+      let data = await api.get(`reports?patient_id=${patientId}`);
       setReportsData(data);
     } catch (error) {
       console.log(error);

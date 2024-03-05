@@ -1,7 +1,9 @@
 import FullScreenIcon from "../../assets/images/full-screen-icon.svg";
-import TemperatureImage from "../../assets/images/check-2.png";
 import useApi from "../../hooks/useApi";
 import { useEffect, useState } from "react";
+import TemperatureItem from "./DashboardElements/TemperatueItem";
+import BPItem from "./DashboardElements/BPItem";
+import PO2Item from "./DashboardElements/POItem";
 interface Props {
   patientId: string;
 }
@@ -11,7 +13,15 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
   const api = useApi();
   const getPatientIOTReports = async () => {
     try {
-      let data = await api.get(`iot/?patient_id=${patientId}`);
+      let { data } = await api.get<{
+        patient_name: string;
+        patient_id: number;
+        type: string;
+        id: string;
+        timestamp: string;
+        value: number;
+      }>(`iot?patient_id=${patientId}`);
+      console.log(data, "data");
       setIOTData(data);
     } catch (error) {
       console.log(error);
@@ -23,7 +33,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
   }, []);
   return (
     <>
-      <div className="row ">
+      <div className="row">
         <div className="accordion mb-20" id="accordionExample">
           <div className="accordion-item">
             <div className="box-header with-border custom-space">
@@ -112,23 +122,10 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                 </ul>
                 <div className="tab-content">
                   <div className="tab-pane " id="home8" role="tabpanel">
-                    <div className="p-15 d-flex justify-content-between align-items-center">
-                      <div className="temp-tab">
-                        <h4 className="box-title margin-b-5 fs-16">
-                          Temperature
-                        </h4>
-                        <p className="text-fade margin-b-5 fs-12">
-                          31 Jan 2024
-                        </p>
-                        <p className="m-0 inblock fs-12">Pateint. John Smith</p>
-                      </div>
-                      <div className="box-controls pull-right">
-                        <span className="text-primary">35.C</span>
-                        <div className="avatar avatar-xxl">
-                          <img src={TemperatureImage} alt="temp" />
-                        </div>
-                      </div>
-                    </div>
+                    {IOTData?.map((el: any) => {
+                      if (el.type === "TEMPERATURE")
+                        return <TemperatureItem temperature={el} />;
+                    })}
                   </div>
                   <div
                     className="tab-pane active"
@@ -141,40 +138,14 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                     </div>
                   </div>
                   <div className="tab-pane" id="messages15" role="tabpanel">
-                    <div className="p-15 d-flex justify-content-between align-items-center">
-                      <div className="temp-tab">
-                        <h4 className="box-title margin-b-5 fs-16">
-                          Blood Pressure
-                        </h4>
-                        <p className="text-fade margin-b-5 fs-14">
-                          31 Jan 2024
-                        </p>
-                        <p className="m-0 inblock fs-14">Pateint. John Smith</p>
-                      </div>
-                      <div className="box-controls pull-right">
-                        <span className="text-primary">35.C</span>
-                        <div className="avatar avatar-xxl">
-                          <img src={TemperatureImage} alt="temperature" />
-                        </div>
-                      </div>
-                    </div>
+                    {IOTData?.map((el: any) => {
+                      if (el.type === "BP") return <BPItem bp={el} />;
+                    })}
                   </div>
                   <div className="tab-pane" id="messages16" role="tabpanel">
-                    <div className="p-15 d-flex justify-content-between align-items-center">
-                      <div className="temp-tab">
-                        <h4 className="box-title margin-b-5 fs-16">PO2</h4>
-                        <p className="text-fade margin-b-5 fs-14">
-                          31 Jan 2024
-                        </p>
-                        <p className="m-0 inblock fs-14">Pateint. John Smith</p>
-                      </div>
-                      <div className="box-controls pull-right">
-                        <span className="text-primary">35.C</span>
-                        <div className="avatar avatar-xxl">
-                          <img src={TemperatureImage} alt="temperature" />
-                        </div>
-                      </div>
-                    </div>
+                    {IOTData?.map((el: any) => {
+                      if (el.type === "PO2") return <PO2Item po2={el} />;
+                    })}
                   </div>
                 </div>
               </div>
@@ -211,7 +182,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                           className="primary"
                           data-bs-dismiss="modal"
                           aria-label="Close"
-                          href ="#iotmodal"
+                          href="#iotmodal"
                         >
                           <img src={FullScreenIcon} alt="full-screen" />
                         </a>
@@ -285,25 +256,10 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                       </ul>
                       <div className="tab-content">
                         <div className="tab-pane " id="iot1" role="tabpanel">
-                          <div className="p-15 d-flex justify-content-between align-items-center">
-                            <div className="temp-tab">
-                              <h4 className="box-title margin-b-5 fs-16">
-                                Temperature
-                              </h4>
-                              <p className="text-fade margin-b-5 fs-12">
-                                31 Jan 2024
-                              </p>
-                              <p className="m-0 inblock fs-12">
-                                Pateint. John Smith
-                              </p>
-                            </div>
-                            <div className="box-controls pull-right">
-                              <span className="text-primary">35.C</span>
-                              <div className="avatar avatar-xxl">
-                                <img src={TemperatureImage} alt="temp" />
-                              </div>
-                            </div>
-                          </div>
+                          {IOTData?.map((el: any) => {
+                            if (el.type === "TEMPERATURE")
+                              return <TemperatureItem temperature={el} />;
+                          })}
                         </div>
                         <div
                           className="tab-pane active"
@@ -318,46 +274,14 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                           </div>
                         </div>
                         <div className="tab-pane" id="iot3" role="tabpanel">
-                          <div className="p-15 d-flex justify-content-between align-items-center">
-                            <div className="temp-tab">
-                              <h4 className="box-title margin-b-5 fs-16">
-                                Blood Pressure
-                              </h4>
-                              <p className="text-fade margin-b-5 fs-14">
-                                31 Jan 2024
-                              </p>
-                              <p className="m-0 inblock fs-14">
-                                Pateint. John Smith
-                              </p>
-                            </div>
-                            <div className="box-controls pull-right">
-                              <span className="text-primary">35.C</span>
-                              <div className="avatar avatar-xxl">
-                                <img src={TemperatureImage} alt="temperature" />
-                              </div>
-                            </div>
-                          </div>
+                          {IOTData?.map((el: any) => {
+                            if (el.type === "BP") return <BPItem bp={el} />;
+                          })}
                         </div>
                         <div className="tab-pane" id="iot4" role="tabpanel">
-                          <div className="p-15 d-flex justify-content-between align-items-center">
-                            <div className="temp-tab">
-                              <h4 className="box-title margin-b-5 fs-16">
-                                PO2
-                              </h4>
-                              <p className="text-fade margin-b-5 fs-14">
-                                31 Jan 2024
-                              </p>
-                              <p className="m-0 inblock fs-14">
-                                Pateint. John Smith
-                              </p>
-                            </div>
-                            <div className="box-controls pull-right">
-                              <span className="text-primary">35.C</span>
-                              <div className="avatar avatar-xxl">
-                                <img src={TemperatureImage} alt="temperature" />
-                              </div>
-                            </div>
-                          </div>
+                          {IOTData?.map((el: any) => {
+                            if (el.type === "PO2") return <PO2Item po2={el} />;
+                          })}
                         </div>
                       </div>
                     </div>
