@@ -68,7 +68,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                   <li className="nav-item">
                     {" "}
                     <a
-                      className="nav-link "
+                      className="nav-link active"
                       data-bs-toggle="tab"
                       href="#home8"
                       role="tab"
@@ -82,7 +82,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                   <li className="nav-item">
                     {" "}
                     <a
-                      className="nav-link active"
+                      className="nav-link "
                       data-bs-toggle="tab"
                       href="#profile8"
                       role="tab"
@@ -121,14 +121,14 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                   </li>
                 </ul>
                 <div className="tab-content">
-                  <div className="tab-pane " id="home8" role="tabpanel">
+                  <div className="tab-pane active" id="home8" role="tabpanel">
                     {IOTData?.map((el: any) => {
                       if (el.type === "TEMPERATURE")
                         return <TemperatureItem temperature={el} />;
                     })}
                   </div>
                   <div
-                    className="tab-pane active"
+                    className="tab-pane "
                     id="profile8"
                     role="tabpanel"
                   >
@@ -202,7 +202,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                         <li className="nav-item">
                           {" "}
                           <a
-                            className="nav-link "
+                            className="nav-link active"
                             data-bs-toggle="tab"
                             href="#iot1"
                             role="tab"
@@ -216,7 +216,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                         <li className="nav-item">
                           {" "}
                           <a
-                            className="nav-link active"
+                            className="nav-link "
                             data-bs-toggle="tab"
                             href="#iot2"
                             role="tab"
@@ -255,14 +255,14 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                         </li>
                       </ul>
                       <div className="tab-content">
-                        <div className="tab-pane " id="iot1" role="tabpanel">
+                        <div className="tab-pane active" id="iot1" role="tabpanel">
                           {IOTData?.map((el: any) => {
                             if (el.type === "TEMPERATURE")
                               return <TemperatureItem temperature={el} />;
                           })}
                         </div>
                         <div
-                          className="tab-pane active"
+                          className="tab-pane "
                           id="iot2"
                           role="tabpanel"
                         >

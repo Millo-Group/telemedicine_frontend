@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Meeting from "../Meeting";
-import { Navigate, useLocation, useParams } from "react-router-dom";
-
-function Join() {
-  const { room = "" } = useParams();
-  const { state } = useLocation();
-  console.log(state, "state");
-  // if (!state) return <Navigate to="/authenticate" />;
-  // Set JWT when we have real one
-  // jwt={state?.jwt}
-  return <Meeting roomName={room} jwt={"1111"} />;
+import {  useParams } from "react-router-dom";
+interface Props {
+  state: any;
 }
+
+const Join: React.FC<Props> = ({ state }) => {
+  const { room = "" } = useParams();
+  if (!state) return <div>State Not Available</div>;
+  return <Meeting roomName={room} jwt={state.jwt} />;
+};
 
 export default Join;

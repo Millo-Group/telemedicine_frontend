@@ -3,11 +3,32 @@ import HumanAccordionSection from "../../components/dahsboard/HumanAccordionSect
 import ReportSection from "../../components/dahsboard/ReportSection";
 import DoctorAppointments from "../../components/dahsboard/DoctorAppointments";
 import MeetingRoom from "../../components/Room/join";
-import useChat from "../../hooks/useChat";
+// import useChat from "../../hooks/useChat";
+import { useLocation } from "react-router-dom";
+import useApi from "../../hooks/useApi";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
-  const { currentAppointment } = useChat();
+  // const { currentAppointment } = useChat();
+  const { state } = useLocation();
+  let [patientId, setPatientId] = useState<any>([]);
+  let [isLoading, setIsLoading] = useState<boolean>(true);
+  const api = useApi();
+  const getPatientID = async () => {
+    try {
+      let {
+        data: { partner_id },
+      } = await api.get(`events/${state.event_id}`);
+      setPatientId(partner_id[0]);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  useEffect(() => {
+    getPatientID();
+  }, []);
   return (
     <>
       <div className="content-wrapper">
@@ -21,15 +42,17 @@ const Dashboard = () => {
           {/* Main Section */}
           <div className="row">
             <div className="col-xxxl-3 col-xl-3 col-12 ">
-              {!!Object.keys(currentAppointment).length && <MeetingRoom />}
+              <MeetingRoom state={state} />
             </div>
             <div className="col-xxxl-5 col-xl-5 col-12"></div>
             {/* Reports */}
-            <div className="col-xxxl-4 col-xl-4 col-12 p-0">
-              <IOTSection patientId="30" />
-              <HumanAccordionSection />
-              <ReportSection patientId="30"  />
-            </div>
+            {!isLoading && (
+              <div className="col-xxxl-4 col-xl-4 col-12 p-0">
+                <IOTSection patientId={patientId} />
+                <HumanAccordionSection />
+                <ReportSection patientId={patientId} />
+              </div>
+            )}
           </div>
         </section>
       </div>

@@ -31,6 +31,7 @@ function Authorization() {
       navigate(`/dashboard/${data.room_name}`, {
         state: {
           jwt: data.jitsi_jwt,
+          event_id
         },
       });
     } catch (error) {

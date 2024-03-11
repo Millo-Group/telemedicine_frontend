@@ -3,10 +3,16 @@ import * as cryptoService from "../services/crypto";
 
 function useApi() {
   const baseURL = "https://telemedicine-backend.infinityclinic.co/api";
-
-  const instance = axios.create({ baseURL });
-  const jwt = localStorage.getItem('token')
-  instance.defaults.headers.common.Authorization = `Bearer ${jwt}`
+  const headers = {
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Content-Type": "application/json", 
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+    "Cache-Control":"no-cache"
+  };
+  const instance = axios.create({ baseURL, headers });
+  const jwt = localStorage.getItem("token");
+  instance.defaults.headers.common.Authorization = `Bearer ${jwt}`;
 
   instance.interceptors.request.use((config) => {
     if (config.data) {
