@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import LogoLetterPNG from "../assets/images/logo-letter.png";
 import LogoTextPNG from "../assets/images/logo-light-text.png";
@@ -75,7 +76,7 @@ const Header: React.FC<HeaderProps> = ({ toggleLeftBarHandler }) => {
             <ul className="nav navbar-nav">
               <li className="dropdown user user-menu">
                 <a
-                  href="/#"
+                   href="javascript:void(0)"
                   className="waves-effect waves-light dropdown-toggle w-auto l-h-12 bg-transparent p-0 no-shadow under text-decoration-none"
                   data-bs-toggle="dropdown"
                   title="User"
@@ -109,7 +110,7 @@ const Header: React.FC<HeaderProps> = ({ toggleLeftBarHandler }) => {
               </li>
               <li className="btn-group nav-item d-lg-inline-flex d-none">
                 <a
-                  href="/#"
+                  href="javascript:void(0)"
                   data-provide="fullscreen"
                   className="waves-effect waves-light nav-link full-screen btn-warning-light d-flex align-items-center justify-content-center"
                   title="Full Screen"
@@ -119,7 +120,7 @@ const Header: React.FC<HeaderProps> = ({ toggleLeftBarHandler }) => {
               </li>
               <li className="dropdown notifications-menu">
                 <a
-                  href="/#"
+                   href="javascript:void(0)"
                   className="waves-effect waves-light dropdown-toggle btn-info-light d-flex align-items-center justify-content-centerd-flex align-items-center justify-content-center"
                   data-bs-toggle="dropdown"
                   title="Notifications"
@@ -148,44 +149,44 @@ const Header: React.FC<HeaderProps> = ({ toggleLeftBarHandler }) => {
                   <li>
                     <ul className="menu sm-scrol">
                       <li>
-                        <a href="/#">
+                        <a  href="javascript:void(0)">
                           <i className="fa fa-users text-info"></i> Curabitur id
                           eros quis nunc suscipit blandit.
                         </a>
                       </li>
                       <li>
-                        <a href="/#">
+                        <a  href="javascript:void(0)">
                           <i className="fa fa-warning text-warning"></i> Duis
                           malesuada justo eu sapien elementum, in semper diam
                           posuere.
                         </a>
                       </li>
                       <li>
-                        <a href="/#">
+                        <a  href="javascript:void(0)">
                           <i className="fa fa-users text-danger"></i> Donec at
                           nisi sit amet tortor commodo porttitor pretium a erat.
                         </a>
                       </li>
                       <li>
-                        <a href="/#">
+                        <a  href="javascript:void(0)">
                           <i className="fa fa-shopping-cart text-success"></i>{" "}
                           In gravida mauris et nisi
                         </a>
                       </li>
                       <li>
-                        <a href="/#">
+                        <a  href="javascript:void(0)">
                           <i className="fa fa-user text-danger"></i> Praesent eu
                           lacus in libero dictum fermentum.
                         </a>
                       </li>
                       <li>
-                        <a href="/#">
+                        <a  href="javascript:void(0)">
                           <i className="fa fa-user text-primary"></i> Nunc
                           fringilla lorem
                         </a>
                       </li>
                       <li>
-                        <a href="/#">
+                        <a  href="javascript:void(0)">
                           <i className="fa fa-user text-success"></i> Nullam
                           euismod dolor ut quam interdum, at scelerisque ipsum
                           imperdiet.
@@ -200,7 +201,7 @@ const Header: React.FC<HeaderProps> = ({ toggleLeftBarHandler }) => {
               </li>
               <li className="btn-group nav-item">
                 <a
-                  href="/#"
+                   href="javascript:void(0)"
                   data-toggle="control-sidebar"
                   title="Setting"
                   className="waves-effect full-screen waves-light btn-danger-light d-flex align-items-center justify-content-center"
@@ -210,7 +211,7 @@ const Header: React.FC<HeaderProps> = ({ toggleLeftBarHandler }) => {
               </li>
               <li className="btn-group nav-item">
                 <a
-                  href="/#"
+                   href="javascript:void(0)"
                   className="waves-effect waves-light nav-link push-btn btn-success-light"
                   data-bs-toggle="tooltip"
                   data-bs-placement="left"
@@ -224,7 +225,7 @@ const Header: React.FC<HeaderProps> = ({ toggleLeftBarHandler }) => {
               </li>
               <li className="btn-group nav-item">
                 <a
-                  href="/#"
+                   href="javascript:void(0)"
                   className="waves-effect waves-light nav-link push-btn btn-danger-light css_switch"
                   data-bs-toggle="tooltip"
                   data-bs-placement="left"
@@ -243,3 +244,4 @@ const Header: React.FC<HeaderProps> = ({ toggleLeftBarHandler }) => {
 };
 
 export default Header;
+/* eslint-enable jsx-a11y/anchor-is-valid */

@@ -10,13 +10,10 @@ import ChatProvider from "./providers/ChatProvider";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-
 root.render(
-  <React.StrictMode>
-    <ChatProvider>
-      <App />
-    </ChatProvider>
-  </React.StrictMode>
+  <ChatProvider>
+    <App />
+  </ChatProvider>
 );
 
 reportWebVitals();

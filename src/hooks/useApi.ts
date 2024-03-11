@@ -2,7 +2,7 @@ import axios from "axios";
 import * as cryptoService from "../services/crypto";
 
 function useApi() {
-  const baseURL = "http://localhost:8000/api";
+  const baseURL = "https://telemedicine-backend.infinityclinic.co/api";
 
   const instance = axios.create({ baseURL });
   const jwt = localStorage.getItem('token')
