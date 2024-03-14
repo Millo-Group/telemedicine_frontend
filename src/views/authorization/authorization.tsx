@@ -15,7 +15,6 @@ function Authorization() {
   const [searchParams] = useSearchParams();
 
   const navigate = useNavigate();
-
   const event_id = searchParams.get("event_id");
   const employee_id = searchParams.get("employee_id");
   const customer_id = searchParams.get("customer_id");
@@ -31,7 +30,8 @@ function Authorization() {
       navigate(`/dashboard/${data.room_name}`, {
         state: {
           jwt: data.jitsi_jwt,
-          event_id
+          event_id,
+          employee_id
         },
       });
     } catch (error) {

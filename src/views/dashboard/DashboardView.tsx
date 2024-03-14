@@ -17,9 +17,9 @@ const Dashboard = () => {
   const getPatientID = async () => {
     try {
       let {
-        data: { partner_id },
+        data: { patient_id },
       } = await api.get(`events/${state.event_id}`);
-      setPatientId(partner_id[0]);
+      setPatientId(patient_id[0]);
       setIsLoading(false);
     } catch (error) {
       console.log(error);

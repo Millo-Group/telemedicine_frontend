@@ -1359,9 +1359,10 @@ Theme Primary Color
   color: #ffffff !important;
 }
 .theme-primary .btn-primary-light:disabled {
-  background-color: white;
+  background-color: rgb(182, 177, 177);
   border-color: #c8c9ee;
   opacity: 0.5;
+  cursor: not-allowed;
 }
 .theme-primary .btn-primary-light.disabled {
   background-color: white;
@@ -1581,8 +1582,8 @@ Theme Primary Color
 
 /*---Warning Button light---*/
 .theme-primary .btn-warning-light {
-  background-color: #fff8ea ;
-  border-color: #fff8ea ;
+  background-color: #fff8ea;
+  border-color: #fff8ea;
   color: #ffa800 !important;
 }
 .theme-primary .btn-warning-light:hover,

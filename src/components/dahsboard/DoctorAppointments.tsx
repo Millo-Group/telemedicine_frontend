@@ -4,6 +4,8 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import DummyAvatarImage from "../../assets/images/dummy-carousal-avtar.jpg";
 import React, { useEffect, useState } from "react";
 import useApi from "../../hooks/useApi";
+import moment from "moment";
+import { useNavigate, useLocation } from "react-router-dom";
 import useChat from "../../hooks/useChat";
 import Spinner from "../../components/Spinner";
 const carosualOptions = {
@@ -18,64 +20,72 @@ const carosualOptions = {
     },
   },
 };
-
-const dummyAppointmentList = [
-  {
-    id: 1,
-    name: "John Carter",
-    status: "Emergency appointment",
-    startTime: "1:00 PM",
-    endTime: "2:00 PM",
-    isActive: false,
-  },
-  {
-    id: 2,
-    name: "Williomson",
-    status: "Emergency appointment",
-    startTime: "6:00 PM",
-    endTime: "7:00 PM",
-    isActive: false,
-  },
-  {
-    id: 3,
-    name: "Shawn Hampton",
-    status: "Emergency appointment",
-    startTime: "4:30 PM",
-    endTime: "5:00 PM",
-    isActive: false,
-  },
-];
-const currentTime = new Date()
-  .toLocaleTimeString("en-US", { hour12: true })
-  .toUpperCase();
-
 const Appoitments: React.FC = () => {
+  const navigate = useNavigate();
+  const { state } = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [appointments, setAppoitments] = useState<any[]>([]);
   const { setCurrentAppointment } = useChat();
-
+  const currentDateTime = moment();
   const api = useApi();
   const getDoctorAppoitments = async () => {
     try {
-      await api.get("doctor/appointments");
+      let { data } = await api.get("doctor/appointments");
+      console.log(data, "data");
+      let reOrderAppointments: Array<any> = appoitmentsHandler(data);
+      setAppoitments(reOrderAppointments);
     } catch (error) {
       console.log(error);
     }
-    let reOrderAppointments: Array<any> =
-    appoitmentsHandler(dummyAppointmentList);
-    setAppoitments(reOrderAppointments);
     setIsLoading(false);
   };
-  const appoitmentsHandler = (appointmentsList: Array<any> = []) => {
-    appointmentsList?.forEach((el, index) => {
-      if (el.startTime <= currentTime && el.endTime >= currentTime) {
-        const currentTimeAppointment = appointmentsList.splice(index, 1)[0];
-        currentTimeAppointment.isActive = true;
-        appointmentsList.splice(1, 0, currentTimeAppointment);
-        setCurrentAppointment(currentTimeAppointment)
-      }
+  const navigateToCurrentAppointment = (
+    appointment: Record<string, any> = {}
+  ) => {
+    navigate(
+      `/authenticate?employee_id=${state.employee_id}&event_id=${appointment.id}`
+    );
+    setCurrentAppointment(appointment);
+  };
+  const reorderAppointments = (appointmentsList: Array<any> = []) => {
+    appointmentsList.sort((a, b) => {
+      const firstDate = new Date(a.start_time);
+      const secondDate = new Date(b.start_time);
+      return firstDate.getTime() - secondDate.getTime();
     });
     return appointmentsList;
+  };
+  const appoitmentsHandler = (appointmentsList: Array<any> = []) => {
+    const orderedAppointmentsList = reorderAppointments(appointmentsList);
+    orderedAppointmentsList?.forEach((el, index) => {
+      const startTime = moment(el.start_time, "YYYY-MM-DD HH:mm:ss")
+        .format("hh:mm A")
+        .toUpperCase();
+      const startDate = moment(el.start_time, "YYYY-MM-DD HH:mm:ss").format(
+        "YYYY-MM-DD"
+      );
+      const startDateTime = moment(el.start_time);
+      const endDateTime = moment(el.end_time);
+
+      const isCurrentTimeAppointment =
+        (currentDateTime.isAfter(startDateTime) ||
+          currentDateTime.isSame(startDateTime)) &&
+        (currentDateTime.isBefore(endDateTime) ||
+          currentDateTime.isSame(endDateTime));
+
+      if (isCurrentTimeAppointment) {
+        el.startTime = startTime;
+        const currentTimeAppointment = orderedAppointmentsList.splice(
+          index,
+          1
+        )[0];
+        currentTimeAppointment.active = true;
+        orderedAppointmentsList.splice(1, 0, currentTimeAppointment);
+        setCurrentAppointment(currentTimeAppointment);
+      } else el.startTime = startDate + " " + startTime;
+    });
+
+    return orderedAppointmentsList;
   };
 
   useEffect(() => {
@@ -114,17 +124,22 @@ const Appoitments: React.FC = () => {
                       </div>
                       <div className="d-flex flex-column flex-grow-1 fw-500">
                         <p className="hover-primary text-fade mb-1 fs-12">
-                          {appoitment.name}{" "}
+                          {appoitment.patient_id[1]}{" "}
                         </p>
                         <span className="text-dark fs-14 d-flex  align-items-center">
-                          {appoitment.status}
-                          {appoitment.isActive && <div>&nbsp; - Active</div>}
+                          {appoitment.name}
+                          {appoitment.active && <div>&nbsp; - Active</div>}
                         </span>
                       </div>
                       <div>
                         <button
-                          onClick={() => setCurrentAppointment(appoitment)}
-                          className="waves-effect waves-circle btn btn-circle btn-primary-light btn-sm d-flex justify-content-center align-items-center"
+                          disabled={appoitment.id === +state.event_id}
+                          onClick={() =>
+                            navigateToCurrentAppointment(appoitment)
+                          }
+                          className={`waves-effect waves-circle btn btn-circle btn-primary-light btn-sm d-flex justify-content-center align-items-center  ${
+                            appoitment.id === +state.event_id && "disabled-btn"
+                          }`}
                         >
                           <span className="material-symbols-outlined fs-12">
                             call
