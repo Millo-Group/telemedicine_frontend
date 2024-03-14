@@ -8,18 +8,7 @@ import moment from "moment";
 import { useNavigate, useLocation } from "react-router-dom";
 import useChat from "../../hooks/useChat";
 import Spinner from "../../components/Spinner";
-const carosualOptions = {
-  loop: true,
-  items: 3,
-  responsive: {
-    0: {
-      items: 1,
-    },
-    1280: {
-      items: 3,
-    },
-  },
-};
+
 const Appoitments: React.FC = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -28,13 +17,30 @@ const Appoitments: React.FC = () => {
   const { setCurrentAppointment } = useChat();
   const currentDateTime = moment();
   const api = useApi();
+  const carosualOptions = {
+    loop: true,
+    items: 3,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      1280: {
+        items: appointments.length < 2 ? 1 : appointments.length < 3 ? 2 : 3,
+      },
+    },
+  };
+
   const getDoctorAppoitments = async () => {
     try {
       let { data } = await api.get("doctor/appointments");
-      console.log(data, "data");
       let reOrderAppointments: Array<any> = appoitmentsHandler(data);
       setAppoitments(reOrderAppointments);
     } catch (error) {
+      let { data } = await api.get(`events/${state.event_id}`);
+      let appointmentsArr = [];
+      appointmentsArr.push(data);
+      let reOrderAppointments: Array<any> = appoitmentsHandler(appointmentsArr);
+      setAppoitments(reOrderAppointments);
       console.log(error);
     }
     setIsLoading(false);
