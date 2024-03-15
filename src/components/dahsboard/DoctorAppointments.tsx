@@ -121,7 +121,6 @@ const Appoitments: React.FC = () => {
               className="owl-theme owl-sl"
               {...carosualOptions}
               margin={10}
-              startPosition={activeIndex}
             >
               {appointments?.map((appoitment, index) => {
                 return (
