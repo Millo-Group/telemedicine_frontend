@@ -1,5 +1,4 @@
 import { JaaSMeeting } from "@jitsi/react-sdk";
-// import { useNavigate } from "react-router";
 import styles from "./index.module.css";
 import Chat from "../Chat";
 import useChat from "../../hooks/useChat";
@@ -70,6 +69,7 @@ function Meeting(props: Props) {
           startWithAudioMuted: true,
           prejoinPageEnabled: false,
           enableRecording: true,
+          pipEnabled:true,
         }}
         getIFrameRef={(iframeRef) => {
           iframeRef.style.height = "351px";
