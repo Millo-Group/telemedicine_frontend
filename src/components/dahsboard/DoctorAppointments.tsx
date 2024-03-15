@@ -98,7 +98,9 @@ const Appoitments: React.FC = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getDoctorAppoitments();
+    setTimeout(() => {
+      getDoctorAppoitments();
+    }, 100);
   }, []);
   return (
     <>
@@ -119,11 +121,12 @@ const Appoitments: React.FC = () => {
               className="owl-theme owl-sl"
               {...carosualOptions}
               margin={10}
+              startPosition={activeIndex}
             >
               {appointments?.map((appoitment, index) => {
                 return (
                   <div key={index} className="pe-10 ps-10">
-                    <div className="d-flex align-items-center mb-10">
+                    <div className="d-flex align-items-center  mb-10">
                       <div className="me-15">
                         <img
                           src={DummyAvatarImage}
