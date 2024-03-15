@@ -80,10 +80,12 @@ const Appoitments: React.FC = () => {
     appointmentsList: Array<any> = [],
     eventAppointment: Record<string, any> = {}
   ) => {
-    const isEventAppointmentExist = appointmentsList.find(
-      (appointment) => appointment.id === eventAppointment.id
-    );
-    if (!isEventAppointmentExist) appointmentsList.push(eventAppointment);
+    if (eventAppointment.id) {
+      const isEventAppointmentExist = appointmentsList.find(
+        (appointment) => appointment.id === eventAppointment.id
+      );
+      if (!isEventAppointmentExist) appointmentsList.push(eventAppointment);
+    }
     const orderedAppointmentsList = reorderAppointments(appointmentsList);
     orderedAppointmentsList?.forEach((el, index) => {
       const startTime = moment(el.start_time, "YYYY-MM-DD HH:mm:ss")
