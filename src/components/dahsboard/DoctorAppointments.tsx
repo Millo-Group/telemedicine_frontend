@@ -98,7 +98,9 @@ const Appoitments: React.FC = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getDoctorAppoitments();
+    setTimeout(() => {
+      getDoctorAppoitments();
+    }, 100);
   }, []);
   return (
     <>
