@@ -19,7 +19,7 @@ const Appoitments: React.FC = () => {
   const currentDateTime = moment();
   const api = useApi();
   const carosualOptions = {
-    loop: true,
+    loop: false,
     items: 3,
     responsive: {
       0: {
@@ -115,11 +115,10 @@ const Appoitments: React.FC = () => {
         ) : (
           <div className="box-body carousal-container">
             <OwlCarousel
-              id="owl-carousel"
+              className="owl-theme owl-sl"
+              {...carosualOptions}
               margin={10}
               startPosition={activeIndex}
-              className="owl-theme owl-carousel owl-sl"
-              {...carosualOptions}
             >
               {appointments?.map((appoitment, index) => {
                 return (
