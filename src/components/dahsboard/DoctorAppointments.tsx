@@ -11,6 +11,7 @@ import Spinner from "../../components/Spinner";
 
 const Appoitments: React.FC = () => {
   const navigate = useNavigate();
+  const [activeIndex, setActiveIndex] = useState<any>(0);
   const { state } = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [appointments, setAppoitments] = useState<any[]>([]);
@@ -18,7 +19,7 @@ const Appoitments: React.FC = () => {
   const currentDateTime = moment();
   const api = useApi();
   const carosualOptions = {
-    loop: true,
+    loop: false,
     items: 3,
     responsive: {
       0: {
@@ -72,13 +73,11 @@ const Appoitments: React.FC = () => {
       );
       const startDateTime = moment(el.start_time);
       const endDateTime = moment(el.end_time);
-
       const isCurrentTimeAppointment =
         (currentDateTime.isAfter(startDateTime) ||
           currentDateTime.isSame(startDateTime)) &&
         (currentDateTime.isBefore(endDateTime) ||
           currentDateTime.isSame(endDateTime));
-
       if (isCurrentTimeAppointment) {
         el.startTime = startTime;
         const currentTimeAppointment = orderedAppointmentsList.splice(
@@ -89,6 +88,9 @@ const Appoitments: React.FC = () => {
         orderedAppointmentsList.splice(1, 0, currentTimeAppointment);
         setCurrentAppointment(currentTimeAppointment);
       } else el.startTime = startDate + " " + startTime;
+      if (el.id == state.event_id) {
+        setActiveIndex(index - 1);
+      }
     });
 
     return orderedAppointmentsList;
@@ -113,6 +115,7 @@ const Appoitments: React.FC = () => {
         ) : (
           <div className="box-body carousal-container">
             <OwlCarousel
+              startPosition={activeIndex}
               className="owl-theme owl-sl"
               {...carosualOptions}
               margin={10}
@@ -128,7 +131,11 @@ const Appoitments: React.FC = () => {
                           alt=""
                         />
                       </div>
-                      <div className="d-flex flex-column flex-grow-1 fw-500">
+                      <div
+                        className={`d-flex flex-column pe-100  fw-500 ${
+                          appoitment.length > 1 && "flex-grow-1 pe-0"
+                        }`}
+                      >
                         <p className="hover-primary text-fade mb-1 fs-12">
                           {appoitment.patient_id[1]}{" "}
                         </p>
