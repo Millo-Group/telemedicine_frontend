@@ -32,19 +32,33 @@ const Appoitments: React.FC = () => {
   };
 
   const getDoctorAppoitments = async () => {
+    let eventAppointment = await getEventAppointment();
     try {
       let { data } = await api.get("doctor/appointments");
-      let reOrderAppointments: Array<any> = appoitmentsHandler(data);
-      setAppoitments(reOrderAppointments);
+      if (data.length) {
+        let reOrderAppointments: Array<any> = appoitmentsHandler(
+          data,
+          eventAppointment
+        );
+        setAppoitments(reOrderAppointments);
+      } else {
+        setEventAppointment(eventAppointment);
+      }
     } catch (error) {
-      let { data } = await api.get(`events/${state.event_id}`);
-      let appointmentsArr = [];
-      appointmentsArr.push(data);
-      let reOrderAppointments: Array<any> = appoitmentsHandler(appointmentsArr);
-      setAppoitments(reOrderAppointments);
+      setEventAppointment(eventAppointment);
       console.log(error);
     }
     setIsLoading(false);
+  };
+  const getEventAppointment = async () => {
+    let { data } = await api.get(`events/${state.event_id}`);
+    return data;
+  };
+  const setEventAppointment = (eventAppointment: Record<string, any> = {}) => {
+    let appointmentsArr = [];
+    appointmentsArr.push(eventAppointment);
+    let reOrderAppointments: Array<any> = appoitmentsHandler(appointmentsArr);
+    setAppoitments(reOrderAppointments);
   };
   const navigateToCurrentAppointment = (
     appointment: Record<string, any> = {}
@@ -62,7 +76,14 @@ const Appoitments: React.FC = () => {
     });
     return appointmentsList;
   };
-  const appoitmentsHandler = (appointmentsList: Array<any> = []) => {
+  const appoitmentsHandler = (
+    appointmentsList: Array<any> = [],
+    eventAppointment: Record<string, any> = {}
+  ) => {
+    const isEventAppointmentExist = appointmentsList.find(
+      (appointment) => appointment.id === eventAppointment.id
+    );
+    if (!isEventAppointmentExist) appointmentsList.push(eventAppointment);
     const orderedAppointmentsList = reorderAppointments(appointmentsList);
     orderedAppointmentsList?.forEach((el, index) => {
       const startTime = moment(el.start_time, "YYYY-MM-DD HH:mm:ss")
@@ -88,7 +109,7 @@ const Appoitments: React.FC = () => {
         orderedAppointmentsList.splice(1, 0, currentTimeAppointment);
         setCurrentAppointment(currentTimeAppointment);
       } else el.startTime = startDate + " " + startTime;
-      if (el.id == state.event_id) {
+      if (el.id === +state.event_id) {
         setActiveIndex(index - 1);
       }
     });
