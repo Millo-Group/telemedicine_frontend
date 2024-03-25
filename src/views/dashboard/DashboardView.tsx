@@ -3,6 +3,7 @@ import HumanAccordionSection from "../../components/dahsboard/HumanAccordionSect
 import ReportSection from "../../components/dahsboard/ReportSection";
 import DoctorAppointments from "../../components/dahsboard/DoctorAppointments";
 import MeetingRoom from "../../components/Room/join";
+import MiddleSection from "../../components/MiddleSection/PatientInformationSection";
 // import useChat from "../../hooks/useChat";
 import { useLocation } from "react-router-dom";
 import useApi from "../../hooks/useApi";
@@ -44,7 +45,9 @@ const Dashboard = () => {
             <div className="col-xxxl-3 col-xl-3 col-12 ">
               <MeetingRoom state={state} />
             </div>
-            <div className="col-xxxl-5 col-xl-5 col-12"></div>
+            <div className="col-xxxl-5 col-xl-5 col-12">
+              <MiddleSection />
+            </div>
             {/* Reports */}
             {!isLoading && (
               <div className="col-xxxl-4 col-xl-4 col-12 p-0">

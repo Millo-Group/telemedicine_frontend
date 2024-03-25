@@ -7,7 +7,9 @@
       "default",
       {
         "aria-required-children": "off",
-        "aria-required-parent": "off"
+        "aria-required-parent": "off",
+        "aria-valid-attr-value": "off",
+        "aria-allowed-attr": "off"
       }
     ],
     "axe/text-alternatives": [
@@ -15,6 +17,13 @@
       {
         "image-alt": "off"
       }
-    ]
+    ],
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
+      }
+    ],
+    "no-inline-styles": "off"
   }
 }

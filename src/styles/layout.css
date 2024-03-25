@@ -42809,3 +42809,7 @@ img.online {
 .cd-horizontal-timeline .events-content {
   margin-top:0px;
 }
+.reporthover:hover{
+  color: #6750A4;
+  background-color: #E9ECEF;
+}
