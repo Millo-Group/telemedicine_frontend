@@ -3,7 +3,7 @@ import HumanAccordionSection from "../../components/dahsboard/HumanAccordionSect
 import ReportSection from "../../components/dahsboard/ReportSection";
 import DoctorAppointments from "../../components/dahsboard/DoctorAppointments";
 import MeetingRoom from "../../components/Room/join";
-import MiddleSection from "../../components/MiddleSection/PatientInformationSection";
+import PatientInformationSection from "../../components/MiddleSection/PatientInformationSection";
 // import useChat from "../../hooks/useChat";
 import { useLocation } from "react-router-dom";
 import useApi from "../../hooks/useApi";
@@ -46,7 +46,7 @@ const Dashboard = () => {
               <MeetingRoom state={state} />
             </div>
             <div className="col-xxxl-5 col-xl-5 col-12">
-              <MiddleSection />
+              <PatientInformationSection state={state} />
             </div>
             {/* Reports */}
             {!isLoading && (
