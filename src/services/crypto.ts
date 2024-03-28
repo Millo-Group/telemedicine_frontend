@@ -8,3 +8,17 @@ export function encrypted(data: string) {
   });
   return result.toString();
 }
+
+// Decyption func in case needed
+
+// export function decrypted(encryptedData: string) {
+//   const decryptedBytes = CryptoJS.AES.decrypt(
+//     encryptedData,
+//     CryptoJS.enc.Utf8.parse(key),
+//     {
+//       mode: CryptoJS.mode.ECB,
+//     }
+//   );
+//   const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
+//   return decryptedText;
+// }

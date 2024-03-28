@@ -24,11 +24,15 @@ const AccordionActionButtons: React.FC<Props> = ({
     setisRecording(true);
   };
   const stopListening = () => {
-    microphone.stop();
-    microphone.onend = () => {
-      console.log("Stopped microphone on Click");
-    };
-    setisRecording(false);
+    if (isRecording) {
+      microphone.stop();
+      microphone.onend = () => {
+        console.log("Stopped microphone");
+      };
+      setTimeout(() => {
+        setisRecording(false);
+      }, 50);
+    }
   };
 
   microphone.onresult = (event) => {
@@ -62,7 +66,7 @@ const AccordionActionButtons: React.FC<Props> = ({
 
   return (
     <div className="d-flex justify-content-around text-center align-items-center">
-      <div className="text-success" style={{cursor:'pointer'}}>
+      <div className="text-success" style={{ cursor: "pointer" }}>
         <span className="material-symbols-outlined">note</span>
       </div>
       <div
