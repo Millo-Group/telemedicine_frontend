@@ -62,7 +62,7 @@ const AccordionActionButtons: React.FC<Props> = ({
 
   return (
     <div className="d-flex justify-content-around text-center align-items-center">
-      <div className="text-success">
+      <div className="text-success" style={{cursor:'pointer'}}>
         <span className="material-symbols-outlined">note</span>
       </div>
       <div

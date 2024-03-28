@@ -1,6 +1,5 @@
 import PdfImg from "../../assets/images/pdf.png";
 import DownloadSVG from "../../assets/images/download.svg"
-
 const PatientReportFile = () => {
   const prescriptions = [
     { id: 1, name: "prescription.pdf" },
@@ -8,7 +7,6 @@ const PatientReportFile = () => {
     { id: 3, name: "Checkup.pdf" },
     { id: 4, name: "Screening.pdf" },
   ];
-
   return (
     <div className="box box-body px35 bg-lightgray">
       <div className="d-flex flex-column">
@@ -45,7 +43,7 @@ const PatientReportFile = () => {
                 <ul className="dropdown-menu">
                   <li>
                     <div
-                      className="dropdown-item d-flex align-items-center reporthover"
+                      className="dropdown-item d-flex align-items-center"
                       style={{ fontSize: "14px", fontWeight: "300" }}
                     >
                       <span
@@ -59,7 +57,7 @@ const PatientReportFile = () => {
                   </li>
                   <li>
                     <div
-                      className="dropdown-item d-flex align-items-center reporthover"
+                      className="dropdown-item d-flex align-items-center "
                       style={{
                         fontSize: "14px",
                         fontWeight: "300",
@@ -83,5 +81,4 @@ const PatientReportFile = () => {
     </div>
   );
 };
-
-export default PatientReportFile;
+  export default PatientReportFile;

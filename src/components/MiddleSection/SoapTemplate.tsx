@@ -1,4 +1,3 @@
-import React from "react";
 import Soapimg from "../../assets/images/soapimg.png";
 
 interface props {

@@ -1,12 +1,11 @@
 import InputComponent from "./UiInputBox";
 import Actionbuttoncomponent from "./AccordionActionButton";
-import PatientFile from "./PatientReports";
 import React, { useState, useEffect } from "react";
 import Inputform from "./PatientInputFrom";
 import Soaptemplate from "./SoapTemplate";
 import useApi from "../../hooks/useApi";
 import debounce from "lodash/debounce";
-
+import PatientFileReport from './PatientReports';
 interface props {
   state?: any;
 }
@@ -20,6 +19,7 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
   const [planValue, setPlanValue] = useState("");
   const [eventDetails, setEventDetails] = useState("");
   const [isStopListening, setIsStopListening] = useState(false);
+
 
   // Define accordion items data
   const accordionItems = [
@@ -134,12 +134,11 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
       id: 7,
       icon: "perm_media",
       heading: "Media Summary",
-      content: (
-        <>
-          <PatientFile />
-        </>
-      ),
-    },
+      content:
+       <>
+      <PatientFileReport/>
+      </>
+      },
   ];
   const [expanded, setExpanded] = useState(accordionItems[0].id);
 
@@ -186,7 +185,6 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
     getEventsDetails();
     setIsStopListening(false);
   };
-
   const deletePatientData = async (type: string) => {
     if (!type) return;
 
