@@ -26,12 +26,16 @@ function Authorization() {
         jitsi_jwt: string;
         room_name: string;
       }>("/authenticate", params);
+
       localStorage.setItem("token", data.token);
-      navigate(`/dashboard/${data.room_name}`, {
+      let redirectTo = params?.employee_id ? "dashboard" : "patient-videocall";
+
+      navigate(`/${redirectTo}/${data.room_name}`, {
         state: {
           jwt: data.jitsi_jwt,
           event_id,
-          employee_id
+          employee_id,
+          customer_id,
         },
       });
     } catch (error) {

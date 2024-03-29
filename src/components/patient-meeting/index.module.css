@@ -1,0 +1,20 @@
+.root {
+  position: relative;
+}
+.root .chat {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 100%;
+}
+.videoCallOption {
+  position:fixed;
+  bottom:0px;
+  width:100%;
+  background-color:#00AFF0;
+  z-index:9999999;
+}
+
+.videoCallOption span{
+  cursor: pointer;
+}
