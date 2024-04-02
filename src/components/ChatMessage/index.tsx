@@ -4,6 +4,7 @@ import clsx from "clsx";
 
 type Props = {
   data: IncomingMessage | OutgoingMessage;
+  patientclass:Boolean
 };
 
 function isIncomingMessage(object: any): object is IncomingMessage {
@@ -21,9 +22,14 @@ function ChatMessage(props: Props) {
     [styles.root]: true,
     [isIncoming ? styles.incoming : styles.outgoing]: true,
   });
+  const patientclass = clsx({
+    [styles.patientRoot]: true,
+    [isIncoming ? styles.patientIncoming : styles.patientOutgoing]: true,
+  });
+  const finalClass= props.patientclass? patientclass: className
 
   return (
-    <div className={className}>
+    <div className={finalClass}>
       <div>{message}</div>
     </div>
   );

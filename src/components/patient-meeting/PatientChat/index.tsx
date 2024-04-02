@@ -23,7 +23,7 @@ function Chat() {
       </div>
       <div className={styles.chat_list}>
         {messages.map((message, index) => (
-          <ChatMessage key={index} data={message} />
+          <ChatMessage key={index} data={message} patientclass={true} />
         ))}
         <div className={styles.chat_end} />
       </div>

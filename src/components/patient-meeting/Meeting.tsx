@@ -88,21 +88,21 @@ function Meeting(props: Props) {
           <div className="d-flex justify-content-center">
             <div className="p-3 flex-fill text-center">
               <div className="footer-bottom-menu-call">
-                <span className="material-symbols-outlined mds-24 text-primary">
+                <span className="material-symbols-outlined mds-24 text-primary" style={{background:'white', padding:'6px', borderRadius:'50%'}}>
                   videocam
                 </span>
               </div>
             </div>
             <div className="p-3 flex-fill text-center">
               <div className="footer-bottom-menu-call">
-                <span className="material-symbols-outlined mds-24 text-primary">
+                <span className="material-symbols-outlined mds-24 text-primary" style={{background:'white', padding:'6px', borderRadius:'50%'}}>
                   keyboard_voice
                 </span>
               </div>
             </div>
             <div className="p-3 flex-fill text-center">
               <div className="footer-bottom-menu-call">
-                <span className="material-symbols-outlined mds-24 text-danger">
+                <span className="material-symbols-outlined mds-24 text-danger" style={{background:'white', padding:'6px', borderRadius:'50%'}}>
                   call_end
                 </span>
               </div>
@@ -112,14 +112,14 @@ function Meeting(props: Props) {
                 className="footer-bottom-menu-call"
                 onClick={toggleChatModal}
               >
-                <span className="material-symbols-outlined mds-24 text-primary" >
+                <span className="material-symbols-outlined mds-24 text-primary" style={{background:'white', padding:'6px', borderRadius:'50%'}}>
                   chat_bubble
                 </span>
               </div>
             </div>
             <div className="p-3 flex-fill text-center">
               <div className="footer-bottom-menu-call">
-                <span className="material-symbols-outlined mds-24 text-primary">
+                <span className="material-symbols-outlined mds-24 text-primary" style={{background:'white', padding:'6px', borderRadius:'50%'}}>
                   add_call
                 </span>
               </div>
