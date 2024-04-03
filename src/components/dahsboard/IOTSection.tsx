@@ -29,7 +29,9 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
   };
 
   useEffect(() => {
-    getPatientIOTReports();
+    setTimeout(() => {
+      getPatientIOTReports();
+    }, 600);
   }, []);
   return (
     <>
@@ -127,11 +129,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                         return <TemperatureItem temperature={el} />;
                     })}
                   </div>
-                  <div
-                    className="tab-pane "
-                    id="profile8"
-                    role="tabpanel"
-                  >
+                  <div className="tab-pane " id="profile8" role="tabpanel">
                     <div className="p-15 ">
                       <h4 className="box-title margin-b-5 fs-16">Heart ECG</h4>
                       <canvas id="ecg" className="h-150 w-p100"></canvas>
@@ -255,17 +253,17 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                         </li>
                       </ul>
                       <div className="tab-content">
-                        <div className="tab-pane active" id="iot1" role="tabpanel">
+                        <div
+                          className="tab-pane active"
+                          id="iot1"
+                          role="tabpanel"
+                        >
                           {IOTData?.map((el: any) => {
                             if (el.type === "TEMPERATURE")
                               return <TemperatureItem temperature={el} />;
                           })}
                         </div>
-                        <div
-                          className="tab-pane "
-                          id="iot2"
-                          role="tabpanel"
-                        >
+                        <div className="tab-pane " id="iot2" role="tabpanel">
                           <div className="p-15 ">
                             <h4 className="box-title margin-b-5 fs-16">
                               Heart ECG

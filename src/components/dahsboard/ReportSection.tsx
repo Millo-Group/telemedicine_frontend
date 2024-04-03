@@ -18,7 +18,9 @@ const PatientReport: React.FC<Props> = ({ patientId }) => {
   };
 
   useEffect(() => {
-    getPatientIOTReports();
+    setTimeout(() => {
+      getPatientIOTReports();
+    }, 700);
   }, []);
   return (
     <>
@@ -276,45 +278,56 @@ const PatientReport: React.FC<Props> = ({ patientId }) => {
                         role="tabpanel"
                       >
                         <div className="p-15">
-                        {reportsData?.map((el: any) => {
-                        if (el.type === "REFERRALS")
-                          return (
-                            <embed src={el.file} height="100%" width="100%" />
-                          );
-                      })}
+                          {reportsData?.map((el: any) => {
+                            if (el.type === "REFERRALS")
+                              return (
+                                <embed
+                                  src={el.file}
+                                  height="100%"
+                                  width="100%"
+                                />
+                              );
+                          })}
                         </div>
                       </div>
                       <div className="tab-pane" id="report2" role="tabpanel">
                         <div className="p-15">
-                        {reportsData?.map((el: any) => {
-                        if (el.type === "LABS")
-                          return (
-                            <embed src={el.file} height="100%" width="100%" />
-                          );
-                      })}
+                          {reportsData?.map((el: any) => {
+                            if (el.type === "LABS")
+                              return (
+                                <embed
+                                  src={el.file}
+                                  height="100%"
+                                  width="100%"
+                                />
+                              );
+                          })}
                         </div>
                       </div>
                       <div className="tab-pane" id="report3" role="tabpanel">
                         <div className="p-15">
-                        {reportsData?.map((el: any) => {
-                        if (el.type === "eRX")
-                          return (
-                            <embed src={el.file} height="100%" width="100%" />
-                          );
-                      })}
-
+                          {reportsData?.map((el: any) => {
+                            if (el.type === "eRX")
+                              return (
+                                <embed
+                                  src={el.file}
+                                  height="100%"
+                                  width="100%"
+                                />
+                              );
+                          })}
                         </div>
                       </div>
                       <div className="tab-pane" id="report4" role="tabpanel">
                         <div className="p-15">
-                        {reportsData?.map((el: any) => {
-                        if (el.type === "IMAGE")
-                          return (
-                            <div className="text-center mb-3">
-                              <img src={XrayImg} alt="x-ray" />
-                            </div>
-                          );
-                      })}
+                          {reportsData?.map((el: any) => {
+                            if (el.type === "IMAGE")
+                              return (
+                                <div className="text-center mb-3">
+                                  <img src={XrayImg} alt="x-ray" />
+                                </div>
+                              );
+                          })}
                         </div>
                       </div>
                     </div>

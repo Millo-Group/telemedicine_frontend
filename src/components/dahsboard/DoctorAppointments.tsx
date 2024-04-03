@@ -123,7 +123,7 @@ const Appoitments: React.FC = () => {
     setIsLoading(true);
     setTimeout(() => {
       getDoctorAppoitments();
-    }, 100);
+    }, 800);
   }, []);
   return (
     <>

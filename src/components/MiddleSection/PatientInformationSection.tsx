@@ -166,7 +166,7 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
   useEffect(() => {
     setTimeout(() => {
       getEventsDetails();
-    }, 600);
+    }, 1000);
   }, []);
 
   // Update event details
