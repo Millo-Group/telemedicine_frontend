@@ -1,5 +1,5 @@
 import InputComponent from "./UiInputBox";
-import Actionbuttoncomponent from "./AccordionActionButton";
+import AccordionActionButtons from "./AccordionActionButton";
 import React, { useState, useEffect } from "react";
 import Inputform from "./PatientInputFrom";
 import Soaptemplate from "./SoapTemplate";
@@ -51,7 +51,7 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
               setSubjectiveValue(value);
             }}
           />
-          <Actionbuttoncomponent
+          <AccordionActionButtons
             emitTranscriptText={(value: string) => {
               let updatedText = subjectiveValue + " " + value;
               setSubjectiveValue(updatedText);
@@ -74,7 +74,7 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
             value={objectiveValue}
             onChange={(value: any) => setObjectiveValue(value)}
           />
-          <Actionbuttoncomponent
+          <AccordionActionButtons
             emitTranscriptText={(value: string) => {
               let updatedText = objectiveValue + " " + value;
               setObjectiveValue(updatedText);
@@ -97,7 +97,7 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
             value={assessmentValue}
             onChange={(value: any) => setAssessmentValue(value)}
           />
-          <Actionbuttoncomponent
+          <AccordionActionButtons
             emitTranscriptText={(value: string) => {
               let updatedText = assessmentValue + " " + value;
               setAssessmentValue(updatedText);
@@ -117,7 +117,7 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
       content: (
         <>
           <InputComponent value={planValue} />
-          <Actionbuttoncomponent
+          <AccordionActionButtons
             emitTranscriptText={(value: string) => {
               let updatedText = planValue + " " + value;
               setPlanValue(updatedText);
@@ -166,7 +166,7 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
   useEffect(() => {
     setTimeout(() => {
       getEventsDetails();
-    }, 100);
+    }, 600);
   }, []);
 
   // Update event details

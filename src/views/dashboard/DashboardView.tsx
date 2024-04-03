@@ -20,7 +20,7 @@ const Dashboard = () => {
       let {
         data: { partner_ids },
       } = await api.get(`events/${state.event_id}`);
-      let patient_id= partner_ids[1] ? partner_ids[1] : partner_ids[0]
+      let patient_id = partner_ids[1] ? partner_ids[1] : partner_ids[0];
       setPatientId(patient_id);
       setIsLoading(false);
     } catch (error) {
@@ -29,7 +29,9 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    getPatientID();
+    setTimeout(() => {
+      getPatientID();
+    }, 500);
   }, []);
   return (
     <>

@@ -26,7 +26,7 @@ function Chat() {
   useEffect(() => {
     setTimeout(() => {
       getEventsDetails();
-    }, 500);
+    }, 400);
   }, []);
 
   return (

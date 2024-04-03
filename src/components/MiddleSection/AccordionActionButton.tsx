@@ -15,7 +15,6 @@ const AccordionActionButtons: React.FC<Props> = ({
     window.SpeechRecognition || window.webkitSpeechRecognition;
 
   const microphone = new SpeechRecognition();
-  microphone.continuous = true;
   microphone.interimResults = true;
   microphone.lang = "en-US";
 
