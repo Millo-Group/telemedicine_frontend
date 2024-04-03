@@ -1,5 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
+import useApi from "../../../hooks/useApi";
+import { useLocation } from "react-router-dom";
 import ChatInput from "../../ChatInput/index";
 import ChatMessage from "../../ChatMessage/index";
 import useChat from "../../../hooks/useChat";
@@ -7,6 +9,25 @@ import Avatar from '../../../assets/images/avatar.jpg'
 
 function Chat() {
   const { messages } = useChat();
+  const api = useApi();
+  const { state } = useLocation();
+  const [doctorName, setDoctorName] = useState("");
+
+  const getEventsDetails = async () => {
+    try {
+      let {
+        data: { practitioner_id },
+      } = await api.get(`events/${state.event_id}/details`);
+      setDoctorName(practitioner_id[1]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    setTimeout(() => {
+      getEventsDetails();
+    }, 400);
+  }, []);
   return (
     <div className={`box ${styles.root}`}>
       <div className="box-header p-0 pt-3 pb-2">
@@ -14,8 +35,12 @@ function Chat() {
           <img className="avatar avatar-lg mx-0" src={Avatar} alt="avatar"/>
           <div className="d-flex d-block justify-content-between align-items-center w-p100">
             <div className="media-body mb-lg-0 mb-0">
-              <p className="fs-14" style={{fontFamily:"sans-serif",fontWeight:'bold'}}>Dr.Jesmin July</p>
+            {doctorName && (
+                <>
+              <p className="fs-14" style={{fontFamily:"sans-serif",fontWeight:'bold'}}>{doctorName}</p>
               <p className="fs-12">Last Seen 10:30pm ago</p>
+              </>
+              )}
             </div>
           </div>
 

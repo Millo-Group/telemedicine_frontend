@@ -39,22 +39,28 @@ const SoapTemplate: React.FC<props> = ({ eventDetails }) => {
               </tr>
               <tr>
                 <td>
+                  <div className="d-flex align-items-center justify-content-center gap-1">
                   <span className="material-symbols-outlined text-success">
                     leaderboard
                   </span>
                   0/0(0%)
+                  </div>
                 </td>
                 <td>
+                  <div className="d-flex align-items-center justify-content-center gap-1">
                   <span className="material-symbols-outlined text-danger">
                     flag
                   </span>
                   0
+                  </div>
                 </td>
                 <td>
+                  <div className="d-flex align-items-center justify-content-center gap-1">
                   <span className="material-symbols-outlined text-danger">
                     maps_ugc
                   </span>
                   0
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -64,17 +70,17 @@ const SoapTemplate: React.FC<props> = ({ eventDetails }) => {
       <div className="row mt-4 ">
         <div className="col-4 px-2 d-flex justify-content-center flex-column" style={{height:'64px', border:'1px solid #4d7bc9'}}>
           <span className="small">Patient name</span>
-          <b>{display_name}</b>
+          <b style={{fontSize:'14px'}}>{display_name}</b>
         </div>
         <div className="col-4 px-2 d-flex justify-content-center flex-column" style={{height:'64px', border:'1px solid #4d7bc9'}}>
           <span className="small">Assigned Healthcare Practitioner</span>
-          <b>{practitioner_id&&practitioner_id[1]}</b>
+          <b style={{fontSize:'14px'}}>{practitioner_id&&practitioner_id[1]}</b>
         </div>
         <div className="col-4 px-2 d-flex justify-content-center flex-column" style={{height:'64px', border:'1px solid #4d7bc9'}}>
           <span className="small">Conducted on</span>
-          <div className="">
+          <div className="d-flex align-items-center">
           <span className="material-symbols-outlined text-primary">date_range</span>
-          <b>{conductedDate(conducted_on)}</b>
+          <b style={{fontSize:'14px'}}>{conductedDate(conducted_on)}</b>
           </div>
         </div>
         <div className="col-12 py-2" style={{border:'1px solid #4d7bc9'}}>

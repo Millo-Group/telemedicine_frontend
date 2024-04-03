@@ -72,7 +72,7 @@ function Meeting(props: Props) {
           pipEnabled: true,
         }}
         getIFrameRef={(iframeRef) => {
-          iframeRef.style.height = "94vh";
+          iframeRef.style.height = "92vh";
         }}
         {...props}
       />
@@ -85,44 +85,34 @@ function Meeting(props: Props) {
       {/* Toolbar */}
       <div>
         <div className={styles.videoCallOption}>
-          <div className="d-flex justify-content-center">
-            <div className="p-3 flex-fill text-center">
-              <div className="footer-bottom-menu-call">
-                <span className="material-symbols-outlined mds-24 text-primary" style={{background:'white', padding:'6px', borderRadius:'50%'}}>
+          <div className="d-flex justify-content-around">
+              <div className="py-3 footer-bottom-menu-call">
+                <span className="material-symbols-outlined">
                   videocam
                 </span>
-              </div>
             </div>
-            <div className="p-3 flex-fill text-center">
-              <div className="footer-bottom-menu-call">
-                <span className="material-symbols-outlined mds-24 text-primary" style={{background:'white', padding:'6px', borderRadius:'50%'}}>
+              <div className="py-3 footer-bottom-menu-call">
+                <span className="material-symbols-outlined">
                   keyboard_voice
                 </span>
-              </div>
             </div>
-            <div className="p-3 flex-fill text-center">
-              <div className="footer-bottom-menu-call">
-                <span className="material-symbols-outlined mds-24 text-danger" style={{background:'white', padding:'6px', borderRadius:'50%'}}>
+              <div className="py-3 footer-bottom-menu-call">
+                <span className="material-symbols-outlined text-danger">
                   call_end
                 </span>
-              </div>
             </div>
-            <div className="p-3 flex-fill text-center">
               <div
-                className="footer-bottom-menu-call"
+                className="py-3 footer-bottom-menu-call"
                 onClick={toggleChatModal}
               >
-                <span className="material-symbols-outlined mds-24 text-primary" style={{background:'white', padding:'6px', borderRadius:'50%'}}>
+                <span className="material-symbols-outlined">
                   chat_bubble
                 </span>
               </div>
-            </div>
-            <div className="p-3 flex-fill text-center">
-              <div className="footer-bottom-menu-call">
-                <span className="material-symbols-outlined mds-24 text-primary" style={{background:'white', padding:'6px', borderRadius:'50%'}}>
+              <div className="py-3 footer-bottom-menu-call">
+                <span className="material-symbols-outlined">
                   add_call
                 </span>
-              </div>
             </div>
           </div>
         </div>
