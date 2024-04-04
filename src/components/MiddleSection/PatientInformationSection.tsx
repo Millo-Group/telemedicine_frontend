@@ -5,12 +5,17 @@ import Inputform from "./PatientInputFrom";
 import Soaptemplate from "./SoapTemplate";
 import useApi from "../../hooks/useApi";
 import debounce from "lodash/debounce";
-import PatientFileReport from './PatientReports';
+import PatientFileReport from "./PatientReports";
+import AssessmentNoteModal from "./AssessmentNoteModal";
+import ObjectiveNoteModal from "./ObjectiveNoteModal";
+import SubjectiveNoteModal from "./SubjectiveNoteModal";
+import PlanNoteModal from "./PlanNoteModal";
 interface props {
   state?: any;
+  patientId?: String;
 }
 
-const PatientInformationSection: React.FC<props> = ({ state }) => {
+const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
   const api = useApi();
   const [isInitiated, setIsInitiated] = useState(false);
   const [subjectiveValue, setSubjectiveValue] = useState("");
@@ -19,7 +24,34 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
   const [planValue, setPlanValue] = useState("");
   const [eventDetails, setEventDetails] = useState("");
   const [isStopListening, setIsStopListening] = useState(false);
+  const [isObjectiveModalDisplay, setIsObjectiveModalDisplay] = useState(false);
+  const [isSubjectiveModalDisplay, setIsSubjectiveModalDisplay] =
+    useState(false);
+  const [isPlanModalDisplay, setIsPlanModalDisplay] = useState(false);
+  const [isAssessmentModalDisplay, setIsAssessmentModalDisplay] =
+    useState(false);
+  const [notesData, setNotesData] = useState([]);
 
+  const getNotesData = async () => {
+    try {
+      let query: any = {
+        patient_id: patientId,
+      };
+
+      let { data } = await api.get(`notes`, {
+        params: new URLSearchParams(query),
+      });
+      setNotesData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      getNotesData();
+    }, 100);
+  }, []);
 
   // Define accordion items data
   const accordionItems = [
@@ -59,7 +91,17 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
             deleteEvent={() => {
               deletePatientData("subjective");
             }}
+            toggleModals={() => {
+              toggleNoteModal("subjective");
+            }}
             isStopListening={isStopListening}
+          />
+          <SubjectiveNoteModal
+            show={isSubjectiveModalDisplay}
+            toggleModal={() => toggleNoteModal("subjective")}
+            notesData={notesData}
+            updateNotes={getNotesData}
+            patientId={patientId}
           />
         </>
       ),
@@ -82,7 +124,18 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
             deleteEvent={() => {
               deletePatientData("objective");
             }}
+            toggleModals={() => {
+              toggleNoteModal("objective");
+            }}
             isStopListening={isStopListening}
+          />
+          <ObjectiveNoteModal
+            show={isObjectiveModalDisplay}
+            toggleModal={() => toggleNoteModal("objective")}
+            notesData={notesData}
+            updateNotes={getNotesData}
+            patientId={patientId}
+
           />
         </>
       ),
@@ -105,7 +158,18 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
             deleteEvent={() => {
               deletePatientData("assessment");
             }}
+            toggleModals={() => {
+              toggleNoteModal("assessment");
+            }}
             isStopListening={isStopListening}
+          />
+          <AssessmentNoteModal
+            show={isAssessmentModalDisplay}
+            toggleModal={() => toggleNoteModal("assessment")}
+            notesData={notesData}
+            updateNotes={getNotesData}
+            patientId={patientId}
+
           />
         </>
       ),
@@ -125,7 +189,18 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
             deleteEvent={() => {
               deletePatientData("plan");
             }}
+            toggleModals={() => {
+              toggleNoteModal("plan");
+            }}
             isStopListening={isStopListening}
+          />
+          <PlanNoteModal
+            show={isPlanModalDisplay}
+            toggleModal={() => toggleNoteModal("plan")}
+            notesData={notesData}
+            updateNotes={getNotesData}
+            patientId={patientId}
+
           />
         </>
       ),
@@ -134,11 +209,12 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
       id: 7,
       icon: "perm_media",
       heading: "Media Summary",
-      content:
-       <>
-      <PatientFileReport/>
-      </>
-      },
+      content: (
+        <>
+          <PatientFileReport />
+        </>
+      ),
+    },
   ];
   const [expanded, setExpanded] = useState(accordionItems[0].id);
 
@@ -146,6 +222,25 @@ const PatientInformationSection: React.FC<props> = ({ state }) => {
     setExpanded(expanded === id ? 0 : id);
   };
 
+  const toggleNoteModal = (type: string) => {
+    if (!type) return;
+    getNotesData();
+    switch (type) {
+      case "assessment":
+        setIsAssessmentModalDisplay(!isAssessmentModalDisplay);
+        break;
+      case "objective":
+        setIsObjectiveModalDisplay(!isObjectiveModalDisplay);
+        break;
+      case "subjective":
+        setIsSubjectiveModalDisplay(!isSubjectiveModalDisplay);
+        break;
+      case "plan":
+        setIsPlanModalDisplay(!isPlanModalDisplay);
+        break;
+    }
+  };
+  
   // Get event details
 
   const getEventsDetails = async () => {

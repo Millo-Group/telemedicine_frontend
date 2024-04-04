@@ -5,10 +5,10 @@ function useApi() {
   const baseURL = "https://telemedicine-backend.infinityclinic.co/api";
   const headers = {
     "Access-Control-Allow-Headers": "Content-Type",
-    "Content-Type": "application/json", 
+    "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-    "Cache-Control":"no-cache"
+    "Cache-Control": "no-cache",
   };
   const instance = axios.create({ baseURL, headers });
   const jwt = localStorage.getItem("token");

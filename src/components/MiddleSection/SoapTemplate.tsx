@@ -1,11 +1,17 @@
 import Soapimg from "../../assets/images/soapimg.png";
-import moment from 'moment'
+import moment from "moment";
 interface props {
   eventDetails?: any;
 }
 
 const SoapTemplate: React.FC<props> = ({ eventDetails }) => {
-  const { load_google_map,display_name,practitioner_id,conducted_on,contact_address_inline} = eventDetails;
+  const {
+    load_google_map,
+    display_name,
+    practitioner_id,
+    conducted_on,
+    contact_address_inline,
+  } = eventDetails;
 
   const createIframeFromMap = () => {
     return { __html: load_google_map };
@@ -14,11 +20,12 @@ const SoapTemplate: React.FC<props> = ({ eventDetails }) => {
     const momentDate = moment.utc(date);
     const formattedDate = momentDate.format("DD MMM YYYY HH:mm");
     const timeZoneOffset = momentDate.utcOffset();
-    const timeZone = `GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset) / 60}`;
+    const timeZone = `GMT${timeZoneOffset >= 0 ? "+" : "-"}${
+      Math.abs(timeZoneOffset) / 60
+    }`;
     return `${formattedDate} ${timeZone}`;
   };
 
-  
   return (
     <>
       <div className="row">
@@ -68,27 +75,36 @@ const SoapTemplate: React.FC<props> = ({ eventDetails }) => {
         </div>
       </div>
       <div className="row mt-4 ">
-        <div className="col-4 px-2 d-flex justify-content-center flex-column" style={{height:'64px', border:'1px solid #4d7bc9'}}>
+        <div
+          className="col-4 px-2 d-flex justify-content-center flex-column"
+          style={{ height: "64px", border: "1px solid #4d7bc9" }}
+        >
           <span className="small">Patient name</span>
           <b style={{fontSize:'14px'}}>{display_name}</b>
         </div>
-        <div className="col-4 px-2 d-flex justify-content-center flex-column" style={{height:'64px', border:'1px solid #4d7bc9'}}>
+        <div
+          className="col-4 px-2 d-flex justify-content-center flex-column"
+          style={{ height: "64px", border: "1px solid #4d7bc9" }}
+        >
           <span className="small">Assigned Healthcare Practitioner</span>
           <b style={{fontSize:'14px'}}>{practitioner_id&&practitioner_id[1]}</b>
         </div>
-        <div className="col-4 px-2 d-flex justify-content-center flex-column" style={{height:'64px', border:'1px solid #4d7bc9'}}>
+        <div
+          className="col-4 px-2 d-flex justify-content-center flex-column"
+          style={{ height: "64px", border: "1px solid #4d7bc9" }}
+        >
           <span className="small">Conducted on</span>
           <div className="d-flex align-items-center">
           <span className="material-symbols-outlined text-primary">date_range</span>
           <b style={{fontSize:'14px'}}>{conductedDate(conducted_on)}</b>
           </div>
         </div>
-        <div className="col-12 py-2" style={{border:'1px solid #4d7bc9'}}>
+        <div className="col-12 py-2" style={{ border: "1px solid #4d7bc9" }}>
           <div className="d-flex flex-column gap-2 small">
-          <span>Location</span>
-          <span>{contact_address_inline}</span>
+            <span>Location</span>
+            <span>{contact_address_inline}</span>
           </div>
-        <div dangerouslySetInnerHTML={createIframeFromMap()} />
+          <div dangerouslySetInnerHTML={createIframeFromMap()} />
         </div>
       </div>
     </>

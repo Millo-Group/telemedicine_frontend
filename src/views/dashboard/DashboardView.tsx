@@ -36,31 +36,35 @@ const Dashboard = () => {
   return (
     <>
       <div className="content-wrapper">
-        <section className="content">
-          {/* Casousal Section */}
-          <div className="row">
-            <div className="col-lg-12">
-              <DoctorAppointments />
-            </div>
-          </div>
-          {/* Main Section */}
-          <div className="row">
-            <div className="col-xxxl-3 col-xl-3 col-12 ">
-              <MeetingRoom state={state} />
-            </div>
-            <div className="col-xxxl-5 col-xl-5 col-12">
-              <PatientInformationSection state={state} />
-            </div>
-            {/* Reports */}
-            {!isLoading && (
-              <div className="col-xxxl-4 col-xl-4 col-12 p-0">
-                <IOTSection patientId={patientId} />
-                <HumanAccordionSection />
-                <ReportSection patientId={patientId} />
+        {!isLoading && (
+            <section className="content">
+              {/* Casousal Section */}
+              <div className="row">
+                <div className="col-lg-12">
+                  <DoctorAppointments />
+                </div>
               </div>
-            )}
-          </div>
-        </section>
+              {/* Main Section */}
+              <div className="row">
+                <div className="col-xxxl-3 col-xl-3 col-12 ">
+                  <MeetingRoom state={state} />
+                </div>
+                {/* Reports */}
+
+                <div className="col-xxxl-5 col-xl-5 col-12">
+                  <PatientInformationSection
+                    state={state}
+                    patientId={patientId}
+                  />
+                </div>
+                <div className="col-xxxl-4 col-xl-4 col-12 p-0">
+                  <IOTSection patientId={patientId} />
+                  <HumanAccordionSection />
+                  <ReportSection patientId={patientId} />
+                </div>
+              </div>
+            </section>
+        )}
       </div>
     </>
   );

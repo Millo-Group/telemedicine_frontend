@@ -3,12 +3,14 @@ import { useState, MouseEventHandler, useEffect } from "react";
 interface Props {
   emitTranscriptText?: Function;
   deleteEvent?: MouseEventHandler<HTMLDivElement>;
+  toggleModals?: MouseEventHandler<HTMLDivElement>;
   isStopListening?: Boolean;
 }
 const AccordionActionButtons: React.FC<Props> = ({
   emitTranscriptText,
   deleteEvent,
   isStopListening,
+  toggleModals
 }) => {
   const [isRecording, setisRecording] = useState(false);
   const SpeechRecognition =
@@ -65,7 +67,7 @@ const AccordionActionButtons: React.FC<Props> = ({
 
   return (
     <div className="d-flex justify-content-around text-center align-items-center">
-      <div className="text-success" style={{ cursor: "pointer" }}>
+      <div onClick={toggleModals} className="text-success" style={{ cursor: "pointer" }}>
         <span className="material-symbols-outlined">note</span>
       </div>
       <div
