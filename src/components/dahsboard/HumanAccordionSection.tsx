@@ -15,7 +15,8 @@ const HumanBodyAccordian = () => {
                   data-bs-target="#collapseTwo"
                   aria-expanded="true"
                   aria-controls="collapseTwo"
-                >
+                  style={{ color: "#6750A4" }}
+      >
                   Human Body
                 </button>
                 <a

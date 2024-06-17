@@ -8,6 +8,8 @@ import PatientInformationSection from "../../components/MiddleSection/PatientInf
 import { useLocation } from "react-router-dom";
 import useApi from "../../hooks/useApi";
 import { useEffect, useState } from "react";
+import PatientReportBar from "../../components/dahsboard/DashboardElements/ReportBar";
+import Chat from "../../components/Chat";
 
 const Dashboard = () => {
   // const { currentAppointment } = useChat();
@@ -19,7 +21,7 @@ const Dashboard = () => {
     try {
       let {
         data: { partner_ids },
-      } = await api.get(`events/${state.event_id}`);
+      } = await api.get(`events/${1}`);
       let patient_id = partner_ids[1] ? partner_ids[1] : partner_ids[0];
       setPatientId(patient_id);
       setIsLoading(false);
@@ -37,33 +39,35 @@ const Dashboard = () => {
     <>
       <div className="content-wrapper">
         {!isLoading && (
-            <section className="content">
-              {/* Casousal Section */}
-              <div className="row">
+          <section className="content">
+            {/* Casousal Section */}
+            {/* <div className="row">
                 <div className="col-lg-12">
                   <DoctorAppointments />
                 </div>
+              </div> */}
+            <PatientReportBar />
+            {/* Main Section */}
+            <div className="row">
+              <div className="col-xxxl-3 col-xl-3 col-12 ">
+                <MeetingRoom state={state} />
+                <Chat />
               </div>
-              {/* Main Section */}
-              <div className="row">
-                <div className="col-xxxl-3 col-xl-3 col-12 ">
-                  <MeetingRoom state={state} />
-                </div>
-                {/* Reports */}
+              {/* Reports */}
 
-                <div className="col-xxxl-5 col-xl-5 col-12">
-                  <PatientInformationSection
-                    state={state}
-                    patientId={patientId}
-                  />
-                </div>
-                <div className="col-xxxl-4 col-xl-4 col-12 p-0">
-                  <IOTSection patientId={patientId} />
-                  <HumanAccordionSection />
-                  <ReportSection patientId={patientId} />
-                </div>
+              <div className="col-xxxl-5 col-xl-5 col-12">
+                <PatientInformationSection
+                  state={state}
+                  patientId={patientId}
+                />
               </div>
-            </section>
+              <div className="col-xxxl-4 col-xl-4 col-12 p-0">
+                <IOTSection patientId={patientId} />
+                <HumanAccordionSection />
+                {/* <ReportSection patientId={patientId} /> */}
+              </div>
+            </div>
+          </section>
         )}
       </div>
     </>

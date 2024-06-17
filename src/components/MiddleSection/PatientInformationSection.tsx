@@ -55,22 +55,22 @@ const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
 
   // Define accordion items data
   const accordionItems = [
-    {
-      id: 1,
-      icon: "conditions",
-      heading: "Overview",
-      content: <Soaptemplate eventDetails={eventDetails} />,
-    },
-    {
-      id: 2,
-      icon: "personal_injury",
-      heading: "Patient digital data",
-      content: (
-        <>
-          <Inputform eventDetails={eventDetails} />
-        </>
-      ),
-    },
+    // {
+    //   id: 1,
+    //   icon: "conditions",
+    //   heading: "Overview",
+    //   content: <Soaptemplate eventDetails={eventDetails} />,
+    // },
+    // {
+    //   id: 2,
+    //   icon: "personal_injury",
+    //   heading: "Patient digital data",
+    //   content: (
+    //     <>
+    //       <Inputform eventDetails={eventDetails} />
+    //     </>
+    //   ),
+    // },
     {
       id: 3,
       icon: "subject",
@@ -80,6 +80,7 @@ const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
           <InputComponent
             value={subjectiveValue}
             onChange={(value: any) => {
+              console.log(value);
               setSubjectiveValue(value);
             }}
           />
@@ -205,16 +206,16 @@ const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
         </>
       ),
     },
-    {
-      id: 7,
-      icon: "perm_media",
-      heading: "Media Summary",
-      content: (
-        <>
-          <PatientFileReport />
-        </>
-      ),
-    },
+    // {
+    //   id: 7,
+    //   icon: "perm_media",
+    //   heading: "Media Summary",
+    //   content: (
+    //     <>
+    //       <PatientFileReport />
+    //     </>
+    //   ),
+    // },
   ];
   const [expanded, setExpanded] = useState(accordionItems[0].id);
 
