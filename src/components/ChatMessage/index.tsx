@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./index.module.css";
 import clsx from "clsx";
+import avatar from '../../assets/images/avatar.jpg'
 
 type Props = {
   data: IncomingMessage | OutgoingMessage;
-  patientclass:Boolean
+  patientclass: boolean;
 };
 
 function isIncomingMessage(object: any): object is IncomingMessage {
@@ -12,25 +13,31 @@ function isIncomingMessage(object: any): object is IncomingMessage {
 }
 
 function ChatMessage(props: Props) {
-  const { data } = props;
-
+  const { data, patientclass } = props;
   const message = data.message;
-
   const isIncoming = isIncomingMessage(data);
 
   const className = clsx({
     [styles.root]: true,
     [isIncoming ? styles.incoming : styles.outgoing]: true,
   });
-  const patientclass = clsx({
+
+  const patientClass = clsx({
     [styles.patientRoot]: true,
     [isIncoming ? styles.patientIncoming : styles.patientOutgoing]: true,
   });
-  const finalClass= props.patientclass? patientclass: className
+
+  const finalClass = patientclass ? patientClass : className;
+  const mainContainerClass = isIncoming ? styles.MessageContainerLeft : styles.MessageContainerRight;
 
   return (
-    <div className={finalClass}>
-      <div>{message}</div>
+    <div className={mainContainerClass}>
+      <img src={avatar} alt="Dummy image" className={styles.avatar} />
+      <div className={finalClass}>
+        <div className={styles.messageContent}>
+          {message}
+        </div>
+      </div>
     </div>
   );
 }

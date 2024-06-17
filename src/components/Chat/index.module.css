@@ -9,6 +9,7 @@
   -ms-user-select: none;
   user-select: none;
   margin-bottom: 0px;
+  min-height: 91vh;
 }
 .chat_list::-webkit-scrollbar {
   display: none;
@@ -22,13 +23,44 @@
   scrollbar-width: none;
   scroll-behavior: smooth;
   padding: 10px 10px 0px 10px;
-  min-height: 300px;
+  /* min-height: 300px; */
   flex-direction: column-reverse;
   overflow-anchor: auto !important;
+  min-height: 70vh;
+  padding: 3rem;
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-bottom: 10px; */
+    width: 100%;
+  }
+
+  .badge {
+    font-size: 12px;
+    padding: 8px 12px;
+    background-color: #5bc0de;
+    color: #fff;
+    border-radius: 20px;
+  }
+
+  .pullRight {
+    text-align: right;
+  }
 }
 .chat_end {
   margin-top: auto;
 }
-.footer{
+.footer {
   padding: 15px 10px 10px 10px;
+  position: absolute;
+  bottom: 0;
+  width: 99%;
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+.copyright {
+  margin-left: 16px;
 }

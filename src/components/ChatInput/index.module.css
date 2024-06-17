@@ -7,6 +7,12 @@
   overflow: hidden;
   padding: 5px;
   border: 1px solid #566f9e;
+  margin-bottom: 60px;
+}
+@media (max-width:768px) {  
+  .root {
+    margin-bottom: 120px;
+  }
 }
 .input::-webkit-scrollbar {
   display: none;
@@ -20,12 +26,34 @@
     border: 1px solid #f3f6f9 !important;
     box-shadow: #f3f6f9;
     font-size: 15px;
+    /* transition: .3s ease-out;
+    border: 1px solid transparent; */
   }
   .hoverclass :hover{
     color: #fff;
     background:#6c757d !important;
+    transition: .3s ease-out;
+    border: 1px solid transparent;
   }
-.sendButtonhover :hover{
-  background-color: #cccccfde;
-  border-radius: 50px;
+.sendButtonhover{
+  background-color: #5156be;
+  border-color: #5156be;
+  color: #cccccfde;
+  text-align: center;
+  width: 2.1em;
+  height: 2.1em;
+  line-height: 2.5em;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1;
+  transition: .3s ease-out;
+  border: 1px solid transparent;
 }
+
+
