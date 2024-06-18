@@ -5,77 +5,79 @@ import ChatMessage from "../ChatMessage";
 
 import useApi from "../../hooks/useApi";
 import { useLocation } from "react-router-dom";
+import useChatBot from "../../hooks/useChatBot";
 
- function Chat() {
-  // const { messages } = useChat();
-  const messages: Array<IncomingMessage | OutgoingMessage> = [
-    {
-      message: "Hello everyone!",
-      privateMessage: false,
-      from: "alice@example.com",
-      nick: "Alice"
-    },
-    {
-      message: "Hi Alice! How are you?",
-      privateMessage: false
-    },
-    {
-      message: "I'm doing well, thanks for asking!",
-      privateMessage: false,
-      from: "alice@example.com",
-      nick: "Alice"
-    },
-    {
-      message: "Can you please check your email?",
-      privateMessage: true,
-      from: "bob@example.com",
-      nick: "Bob"
-    },
-    {
-      message: "Sure, I'll check it right away.",
-      privateMessage: true
-    },
-    {
-      message: "Meeting at 10 AM tomorrow.",
-      privateMessage: false,
-      from: "manager@example.com",
-      nick: "Manager"
-    },
-    {
-      message: "Got it, thanks for the update.",
-      privateMessage: false
-    },
-    {
-      message: "Don't forget to submit your report by EOD.",
-      privateMessage: true,
-      from: "manager@example.com",
-      nick: "Manager"
-    },
-    {
-      message: "Noted, I'll make sure it's done.",
-      privateMessage: true
-    },
-    {
-      message: "Hey, are we still on for lunch today?",
-      privateMessage: false,
-      from: "charlie@example.com",
-      nick: "Charlie"
-    },
-    {
-      message: "Yes, see you at noon!",
-      privateMessage: false
-    },
-    {
-      message: "Can you send me the project files?",
-      privateMessage: true,
-      from: "dave@example.com",
-      nick: "Dave"
-    },
-    {
-      message: "Sure, sending them now.",
-      privateMessage: true
-    }
-  ];
+function Chat() {
+  const { messages, setMessage, loading: chatLoading } = useChatBot();
+  console.log("Initial loading", chatLoading)
+  // const messages: Array<IncomingMessage | OutgoingMessage> = [
+  //   {
+  //     message: "Hello everyone!",
+  //     privateMessage: false,
+  //     from: "alice@example.com",
+  //     nick: "Alice"
+  //   },
+  //   {
+  //     message: "Hi Alice! How are you?",
+  //     privateMessage: false
+  //   },
+  //   {
+  //     message: "I'm doing well, thanks for asking!",
+  //     privateMessage: false,
+  //     from: "alice@example.com",
+  //     nick: "Alice"
+  //   },
+  //   {
+  //     message: "Can you please check your email?",
+  //     privateMessage: true,
+  //     from: "bob@example.com",
+  //     nick: "Bob"
+  //   },
+  //   {
+  //     message: "Sure, I'll check it right away.",
+  //     privateMessage: true
+  //   },
+  //   {
+  //     message: "Meeting at 10 AM tomorrow.",
+  //     privateMessage: false,
+  //     from: "manager@example.com",
+  //     nick: "Manager"
+  //   },
+  //   {
+  //     message: "Got it, thanks for the update.",
+  //     privateMessage: false
+  //   },
+  //   {
+  //     message: "Don't forget to submit your report by EOD.",
+  //     privateMessage: true,
+  //     from: "manager@example.com",
+  //     nick: "Manager"
+  //   },
+  //   {
+  //     message: "Noted, I'll make sure it's done.",
+  //     privateMessage: true
+  //   },
+  //   {
+  //     message: "Hey, are we still on for lunch today?",
+  //     privateMessage: false,
+  //     from: "charlie@example.com",
+  //     nick: "Charlie"
+  //   },
+  //   {
+  //     message: "Yes, see you at noon!",
+  //     privateMessage: false
+  //   },
+  //   {
+  //     message: "Can you send me the project files?",
+  //     privateMessage: true,
+  //     from: "dave@example.com",
+  //     nick: "Dave"
+  //   },
+  //   {
+  //     message: "Sure, sending them now.",
+  //     privateMessage: true
+  //   }
+  // ];
 
   const api = useApi();
   const { state } = useLocation();
@@ -139,12 +141,12 @@ import { useLocation } from "react-router-dom";
 
         <div className={styles.chat_end} />
       </div>
-        <div className="p-1 fs-6">
-                &copy; <script>document.write(new Date().getFullYear())</script> <a href="#">Infinity Clinic</a>. All Rights Reserved.
-                </div>
+      <div className="p-1 fs-6">
+        &copy; <script>document.write(new Date().getFullYear())</script> <a href="#">Infinity Clinic</a>. All Rights Reserved.
+      </div>
       <div className={styles.footer}>
 
-        <ChatInput />
+        <ChatInput handleSend={setMessage} loading={chatLoading} />
       </div>
     </div>
   );

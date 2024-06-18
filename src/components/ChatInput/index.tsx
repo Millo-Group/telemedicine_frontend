@@ -5,16 +5,16 @@ import useChat from "../../hooks/useChat";
 
 interface chatInputProps {
   placeholder?: string;
-  handleSend?: (message: string)=> void;
+  handleSend?: (message: string) => void;
+  loading?: boolean
 }
-function ChatInput({placeholder, handleSend}: chatInputProps) {
+function ChatInput({ placeholder, handleSend, loading = false }: chatInputProps) {
   const { sendMessage } = useChat();
   const [message, setMessage] = useState("");
 
   const handleSendMessage = () => {
     sendMessage(message);
-    if(handleSend) 
-    {
+    if (handleSend && !loading) {
       handleSend(message)
     }
     setMessage("");
@@ -26,23 +26,23 @@ function ChatInput({placeholder, handleSend}: chatInputProps) {
         onChange={(e) => setMessage(e.target.value)}
         value={message}
         className="form-control b-0"
-        style={{padding:'10px 10.5px',fontFamily:'IBM Plex Sans, sans-serif',boxShadow:'none'}}
-        placeholder={placeholder?placeholder: "Say something..."}
+        style={{ padding: '10px 10.5px', fontFamily: 'IBM Plex Sans, sans-serif', boxShadow: 'none' }}
+        placeholder={placeholder ? placeholder : "Say something..."}
         type="text"
       ></input>
       <div className={`d-flex justify-content-between ${styles.hoverclass}`}>
-      <IconButton className={`material-symbols-outlined  ${styles.textbutton}`}>
-        link
-      </IconButton>
-      <IconButton className={`material-symbols-outlined ${styles.textbutton}`}>
-      mic
-      </IconButton>
+        <IconButton className={`material-symbols-outlined  ${styles.textbutton}`}>
+          link
+        </IconButton>
+        <IconButton className={`material-symbols-outlined ${styles.textbutton}`}>
+          mic
+        </IconButton>
       </div>
-        <div className={styles.sendButtonhover} onClick={handleSendMessage}>
-          <IconButton className="material-symbols-outlined">
+      <div className={styles.sendButtonhover} onClick={handleSendMessage}>
+        <IconButton className="material-symbols-outlined">
           send
-      </IconButton>
-        </div>
+        </IconButton>
+      </div>
 
     </div>
   );
