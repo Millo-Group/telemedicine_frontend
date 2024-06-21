@@ -3,7 +3,7 @@ import AccordionActionButtons from "./AccordionActionButton";
 import React, { useState, useEffect } from "react";
 import Inputform from "./PatientInputFrom";
 import Soaptemplate from "./SoapTemplate";
-import useApi from "../../hooks/useApi";
+import {useApi} from "../../hooks/useApi";
 import debounce from "lodash/debounce";
 import PatientFileReport from "./PatientReports";
 import AssessmentNoteModal from "./AssessmentNoteModal";

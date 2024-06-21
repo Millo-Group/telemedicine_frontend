@@ -3,13 +3,12 @@ import styles from "./index.module.css";
 import ChatInput from "../ChatInput";
 import ChatMessage from "../ChatMessage";
 
-import useApi from "../../hooks/useApi";
+import {useApi} from "../../hooks/useApi";
 import { useLocation } from "react-router-dom";
 import useChatBot from "../../hooks/useChatBot";
 
 function Chat() {
   const { messages, setMessage, loading: chatLoading } = useChatBot();
-  console.log("Initial loading", chatLoading)
   // const messages: Array<IncomingMessage | OutgoingMessage> = [
   //   {
   //     message: "Hello everyone!",

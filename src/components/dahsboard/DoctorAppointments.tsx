@@ -3,7 +3,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import DummyAvatarImage from "../../assets/images/dummy-carousal-avtar.jpg";
 import React, { useEffect, useState } from "react";
-import useApi from "../../hooks/useApi";
+import {useApi} from "../../hooks/useApi";
 import moment from "moment";
 import { useNavigate, useLocation } from "react-router-dom";
 import useChat from "../../hooks/useChat";

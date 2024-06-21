@@ -6,7 +6,7 @@ const PatientDashboardView = () => {
   const { state } = useLocation();
   const { room = "" } = useParams();
 
-  //   if (!state) return <div>State Not Available</div>;
+    if (!state) return <div>State Not Available</div>;
   return (
     <div className={styles.root}>
       <div className="modal center-modal fade" id="modal-admit" >

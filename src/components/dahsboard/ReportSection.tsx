@@ -1,6 +1,6 @@
 import FullScreenIcon from "../../assets/images/full-screen-icon.svg";
 import XrayImg from "../../assets/images/x-ray.png";
-import useApi from "../../hooks/useApi";
+import {useApi} from "../../hooks/useApi";
 import { useEffect, useState } from "react";
 interface Props {
   patientId: string;

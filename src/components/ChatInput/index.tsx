@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import IconButton from "../IconButton";
 import useChat from "../../hooks/useChat";
+import {webhookUseApi} from "../../hooks/useApi";
 
 interface chatInputProps {
   placeholder?: string;
@@ -12,9 +13,23 @@ function ChatInput({ placeholder, handleSend, loading = false }: chatInputProps)
   const { sendMessage } = useChat();
   const [message, setMessage] = useState("");
 
-  const handleSendMessage = () => {
-    sendMessage(message);
+  const api = webhookUseApi();
+  const handleSendMessage = async () => {
+
+    try {
+      let payload = {
+       text: message
+      };
+      let {
+        data
+      } = await api.post(`/google-df-intent`, payload);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+
     if (handleSend && !loading) {
+      sendMessage(message);
       handleSend(message)
     }
     setMessage("");

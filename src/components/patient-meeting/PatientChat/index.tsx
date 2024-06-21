@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
-import useApi from "../../../hooks/useApi";
+import {useApi} from "../../../hooks/useApi";
 import { useLocation } from "react-router-dom";
 import ChatInput from "../../ChatInput/index";
 import ChatMessage from "../../ChatMessage/index";

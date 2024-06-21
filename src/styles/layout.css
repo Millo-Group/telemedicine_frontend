@@ -27993,6 +27993,9 @@ body .main-header .navbar .nav > li.search-box > a:focus {
   border-radius: 0;
   border-left: 0px solid transparent;
 }
+.sidebar-menu > li > a > img {
+margin-left: 8px;
+}
 .sidebar-menu > li.user-profile:hover > a,
 .sidebar-menu > li.user-profile:active > a,
 .sidebar-menu > li.user-profile.active > a {
@@ -28020,8 +28023,6 @@ body .main-header .navbar .nav > li.search-box > a:focus {
 .sidebar-menu > li:active > a,
 .sidebar-menu > li.active > a {
   opacity: 1;
-  padding-left: 5px;
-  padding-right: 5px;
 }
 .sidebar-menu > li:active > a,
 .sidebar-menu > li.active > a,
@@ -42150,7 +42151,7 @@ button.btn.dropdown-toggle:after {
 }
 
 .tooltip .tooltip-inner {
-  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+  /* -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15); */
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
   background: #ffffff;
 }

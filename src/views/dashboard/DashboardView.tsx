@@ -6,7 +6,7 @@ import MeetingRoom from "../../components/Room/join";
 import PatientInformationSection from "../../components/MiddleSection/PatientInformationSection";
 // import useChat from "../../hooks/useChat";
 import { useLocation } from "react-router-dom";
-import useApi from "../../hooks/useApi";
+import {useApi} from "../../hooks/useApi";
 import { useEffect, useState } from "react";
 
 const Dashboard = () => {

@@ -1,5 +1,5 @@
 import FullScreenIcon from "../../assets/images/full-screen-icon.svg";
-import useApi from "../../hooks/useApi";
+import {useApi} from "../../hooks/useApi";
 import { useEffect, useState } from "react";
 import TemperatureItem from "./DashboardElements/TemperatueItem";
 import BPItem from "./DashboardElements/BPItem";
@@ -21,7 +21,6 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
         timestamp: string;
         value: number;
       }>(`iot?patient_id=${patientId}`);
-      console.log(data, "data");
       setIOTData(data);
     } catch (error) {
       console.log(error);

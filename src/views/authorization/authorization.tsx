@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Spinner from "../../components/Spinner";
 import Box from "../../components/Box";
-import useApi from "../../hooks/useApi";
+import {useApi} from "../../hooks/useApi";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 type AuthPayload = {

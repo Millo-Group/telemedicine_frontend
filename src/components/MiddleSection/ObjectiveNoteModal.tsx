@@ -1,6 +1,6 @@
 import { useState, MouseEventHandler, useEffect } from "react";
 import UiInputBox from "./UiInputBox";
-import useApi from "../../hooks/useApi";
+import {useApi} from "../../hooks/useApi";
 import styles from "./index.module.css";
 
 interface props {
