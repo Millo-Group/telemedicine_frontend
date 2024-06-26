@@ -2,10 +2,12 @@ import React from "react";
 import styles from "./index.module.css";
 import clsx from "clsx";
 import avatar from '../../assets/images/avatar.jpg'
+import ChatLoader from "../ChatLoader";
 
 type Props = {
   data: IncomingMessage | OutgoingMessage;
   patientclass: boolean;
+  loading?: boolean;
 };
 
 function isIncomingMessage(object: any): object is IncomingMessage {
@@ -13,7 +15,7 @@ function isIncomingMessage(object: any): object is IncomingMessage {
 }
 
 function ChatMessage(props: Props) {
-  const { data, patientclass } = props;
+  const { data, patientclass, loading } = props;
   const message = data.message;
   const isIncoming = isIncomingMessage(data);
 
@@ -35,7 +37,12 @@ function ChatMessage(props: Props) {
       <img src={avatar} alt="Dummy image" className={styles.avatar} />
       <div className={finalClass}>
         <div className={styles.messageContent}>
-          {message}
+          {
+           message
+          }
+          {
+            loading && <ChatLoader/>
+          }
         </div>
       </div>
     </div>

@@ -2,37 +2,29 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import IconButton from "../IconButton";
 import useChat from "../../hooks/useChat";
-import {webhookUseApi} from "../../hooks/useApi";
+import { useApi } from "../../hooks/useApi";
+import useChatBot from "../../hooks/useChatBot";
 
-interface chatInputProps {
+interface ChatInputProps {
   placeholder?: string;
-  handleSend?: (message: string) => void;
-  loading?: boolean
+  handleSend?: (message: string, response?:string) => void;
+  eventId?: string
 }
-function ChatInput({ placeholder, handleSend, loading = false }: chatInputProps) {
+
+function ChatInput({ placeholder, handleSend, eventId }: ChatInputProps) {
   const { sendMessage } = useChat();
+  const {chatLoading} = useChatBot()
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const api = webhookUseApi();
+  const api = useApi();
+
   const handleSendMessage = async () => {
-
-    try {
-      let payload = {
-       text: message
-      };
-      let {
-        data
-      } = await api.post(`/google-df-intent`, payload);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-
-    if (handleSend && !loading) {
-      sendMessage(message);
-      handleSend(message)
-    }
-    setMessage("");
+      if (handleSend) {
+        sendMessage(message);
+        handleSend(message, eventId);
+        setMessage("")
+      }
   };
 
   return (
@@ -44,21 +36,21 @@ function ChatInput({ placeholder, handleSend, loading = false }: chatInputProps)
         style={{ padding: '10px 10.5px', fontFamily: 'IBM Plex Sans, sans-serif', boxShadow: 'none' }}
         placeholder={placeholder ? placeholder : "Say something..."}
         type="text"
-      ></input>
+        disabled={chatLoading} // Disable input while loading
+      />
       <div className={`d-flex justify-content-between ${styles.hoverclass}`}>
-        <IconButton className={`material-symbols-outlined  ${styles.textbutton}`}>
+        <IconButton className={`material-symbols-outlined ${styles.textbutton}`} disabled={chatLoading}>
           link
         </IconButton>
-        <IconButton className={`material-symbols-outlined ${styles.textbutton}`}>
+        <IconButton className={`material-symbols-outlined ${styles.textbutton}`} disabled={chatLoading}>
           mic
         </IconButton>
       </div>
-      <div className={styles.sendButtonhover} onClick={handleSendMessage}>
-        <IconButton className="material-symbols-outlined">
+      <div className={styles.sendButtonhover} onClick={(chatLoading || message?.length == 0) ? undefined : handleSendMessage}>
+        <IconButton className="material-symbols-outlined" disabled={chatLoading || message?.length == 0}>
           send
         </IconButton>
       </div>
-
     </div>
   );
 }

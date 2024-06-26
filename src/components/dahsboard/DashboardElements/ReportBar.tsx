@@ -11,7 +11,6 @@ const PatientReportBar: React.FC<Props> = ({ }) => {
       <ul className="nav nav-tabs" style={{marginRight: "5rem"}}>
         <li className="nav-item mx-2">
           <a
-            href="#notes"
             className={navLinkClasses('notes')}
             style={{ borderBottomWidth: activeTab === 'notes' ? '2px' : '1px', borderBottomColor: activeTab === 'notes' ? '#6f42c1' : 'transparent' }}
             onClick={() => setActiveTab('notes')}
@@ -21,7 +20,6 @@ const PatientReportBar: React.FC<Props> = ({ }) => {
         </li>
         <li className="nav-item mx-2">
           <a
-            href="#referrals"
             className={navLinkClasses('referrals')}
             style={{ borderBottomWidth: activeTab === 'referrals' ? '2px' : '1px', borderBottomColor: activeTab === 'referrals' ? '#6f42c1' : 'transparent' }}
             onClick={() => setActiveTab('referrals')}
@@ -31,7 +29,6 @@ const PatientReportBar: React.FC<Props> = ({ }) => {
         </li>
         <li className="nav-item mx-2">
           <a
-            href="#labs"
             className={navLinkClasses('labs')}
             style={{ borderBottomWidth: activeTab === 'labs' ? '2px' : '1px', borderBottomColor: activeTab === 'labs' ? '#6f42c1' : 'transparent' }}
             onClick={() => setActiveTab('labs')}
@@ -41,7 +38,6 @@ const PatientReportBar: React.FC<Props> = ({ }) => {
         </li>
         <li className="nav-item mx-2">
           <a
-            href="#erx"
             className={navLinkClasses('erx')}
             style={{ borderBottomWidth: activeTab === 'erx' ? '2px' : '1px', borderBottomColor: activeTab === 'erx' ? '#6f42c1' : 'transparent' }}
             onClick={() => setActiveTab('erx')}
@@ -51,7 +47,6 @@ const PatientReportBar: React.FC<Props> = ({ }) => {
         </li>
         <li className="nav-item mx-2">
           <a
-            href="#images"
             className={navLinkClasses('images')}
             style={{ borderBottomWidth: activeTab === 'images' ? '2px' : '1px', borderBottomColor: activeTab === 'images' ? '#6f42c1' : 'transparent' }}
             onClick={() => setActiveTab('images')}

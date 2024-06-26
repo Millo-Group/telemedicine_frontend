@@ -9,7 +9,7 @@
   -ms-user-select: none;
   user-select: none;
   margin-bottom: 0px;
-  min-height: 91vh;
+  min-height: 88vh;
 }
 .chat_list::-webkit-scrollbar {
   display: none;
@@ -24,9 +24,9 @@
   scroll-behavior: smooth;
   padding: 10px 10px 0px 10px;
   /* min-height: 300px; */
-  flex-direction: column-reverse;
+  flex-direction: column;
   overflow-anchor: auto !important;
-  min-height: 70vh;
+  min-height: 68vh;
   padding: 3rem;
   .row {
     display: flex;
@@ -46,6 +46,11 @@
 
   .pullRight {
     text-align: right;
+  }
+}
+@media (max-width:768px) {  
+  .chat_list {
+    min-height: 60vh;
   }
 }
 .chat_end {

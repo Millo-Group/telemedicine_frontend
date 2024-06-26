@@ -1,7 +1,5 @@
 import IOTSection from "../../components/dashboard/IOTSection";
 import HumanAccordionSection from "../../components/dashboard/HumanAccordionSection";
-import ReportSection from "../../components/dashboard/ReportSection";
-import DoctorAppointments from "../../components/dashboard/DoctorAppointments";
 import MeetingRoom from "../../components/Room/join";
 import PatientInformationSection from "../../components/MiddleSection/PatientInformationSection";
 // import useChat from "../../hooks/useChat";

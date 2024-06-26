@@ -1,13 +1,11 @@
-import { ApiAiClient, IServerResponse } from "api-ai-javascript";
 import { useState } from "react";
+import { useApi } from "./useApi";
 
-const client = new ApiAiClient({
-  accessToken: process.env.REACT_APP_GOOGLE_ACCESS_TOKEN || "",
-});
 
 type Message = IncomingMessage | OutgoingMessage;
 
 function useChatBot() {
+  const api = useApi();
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -15,45 +13,43 @@ function useChatBot() {
    * Abstract method to get message from gcp, update messages and
    * handle loading state
    * @param text
-   * @returns {Promise<IServerResponse['result']>}
    */
-  async function getResult(text: string): Promise<IServerResponse["result"]> {
-    console.log(text);
+  async function setResult(text: string, eventId?: string) {
+    setLoading(true); 
     try {
-      setLoading(true);
-      setMessages((messages) => [
-        ...messages,
-        { message: text, from: "me", privateMessage: false, nick: "User" },
-      ]);
-      const response = await client.textRequest(text);
-      console.log(response);
+      const payload = {
+        queryInput: {
+          text: text,
+          eventId: eventId || ""
+        }
+      }
+      let { data } = await api.post(`/google-intent`, payload);
       setMessages((messages) => [
         ...messages,
         {
-          message: response.result?.fulfillment?.speech || "",
+          message: data?.text || "",
           privateMessage: false,
         },
       ]);
-      return response.result;
-    } catch (error: any) {
-      setMessages((messages) => [
-        ...messages,
-        { message: error.message || "", privateMessage: false },
-      ]);
+    } catch (error) {
+      console.log(error);
     } finally {
       setLoading(false);
     }
   }
-
   /**
    * Set message to state and invoke get result
    * @param message
    */
-  function handleSetMessage(message: string) {
-    getResult(message);
-  }
+  function handleSetMessage(message: string, eventId?: string){
+      setMessages((messages) => [
+        ...messages,
+        { message: message, from: "me", privateMessage: false, nick: "User" },
+      ]);
+      setResult(message, eventId)
+    }
 
-  return { messages, setMessage: handleSetMessage, loading };
+  return { messages, setMessage: handleSetMessage, chatLoading: loading };
 }
 
 export default useChatBot;
