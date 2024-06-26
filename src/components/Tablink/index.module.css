@@ -1,0 +1,13 @@
+.nav-link {
+    cursor: pointer;
+    transition: border-bottom-width 0.3s, border-bottom-color 0.3s;
+  }
+  
+  .nav-link.text-muted {
+    border-bottom: 1px solid transparent;
+  }
+  
+  .nav-link.text-primary {
+    border-bottom: 2px solid #6f42c1;
+  }
+  
