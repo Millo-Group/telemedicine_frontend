@@ -13,8 +13,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Authorization />} />
           <Route path="/authenticate" element={<Authorization />} />
-          <Route path="dashboard/:room" element={<MainLayout />}>
-            <Route index element={<Dashboard />} />
+          <Route element={<MainLayout />}>
+          <Route path="/patient-chat" element={< PatientChatView/>}/>
+          <Route path="/patient-dashboard" element={< PatientDashboardView/>}/>
+          <Route path="dashboard/:room" element={<Dashboard />} />
           </Route>
           <Route path="/patient-videocall/:room" element={<PatientVideoCallView />} />
           <Route path="*" element={<NotFound />} />

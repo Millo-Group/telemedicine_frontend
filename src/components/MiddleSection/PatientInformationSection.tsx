@@ -342,7 +342,7 @@ const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
   }, [planValue]);
 
   return (
-    <div className="accordion accordion-flush" id="accordionFlushExample">
+    <div className="accordion accordion-flush w-100" id="accordionFlushExample">
       {accordionItems.map((item, index) => (
         <div className="accordion-item" key={item.id}>
           <h2 className="accordion-header" id={`flush-heading${item.id}`}>

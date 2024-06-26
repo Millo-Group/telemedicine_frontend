@@ -8,7 +8,7 @@ import PatientInformationSection from "../../components/MiddleSection/PatientInf
 import { useLocation } from "react-router-dom";
 import useApi from "../../hooks/useApi";
 import { useEffect, useState } from "react";
-import PatientReportBar from "../../components/dahsboard/DashboardElements/ReportBar";
+import PatientReportBar from "../../components/dahsboard/DashboardElements/PatientReportBar";
 import Chat from "../../components/Chat";
 
 const Dashboard = () => {
@@ -38,7 +38,7 @@ const Dashboard = () => {
   return (
     <>
       <div className="content-wrapper">
-        {!isLoading && (
+        {true && (
           <section className="content">
             {/* Casousal Section */}
             {/* <div className="row">
@@ -46,7 +46,7 @@ const Dashboard = () => {
                   <DoctorAppointments />
                 </div>
               </div> */}
-            <PatientReportBar />
+           
             {/* Main Section */}
             <div className="row">
               <div className="col-xxxl-3 col-xl-3 col-12 ">
@@ -56,11 +56,13 @@ const Dashboard = () => {
               {/* Reports */}
 
               <div className="col-xxxl-5 col-xl-5 col-12">
-                <PatientInformationSection
+                {/* <PatientInformationSection
                   state={state}
                   patientId={patientId}
-                />
+                /> */}
+                 <PatientReportBar patientId={patientId}  state={state}/>
               </div>
+
               <div className="col-xxxl-4 col-xl-4 col-12 p-0">
                 <IOTSection patientId={patientId} />
                 <HumanAccordionSection />
