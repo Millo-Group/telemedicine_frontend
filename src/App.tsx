@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<Authorization />} />
           <Route path="/authenticate" element={<Authorization />} />
           <Route element={<MainLayout />}>
-          <Route path="/patient-chat/:room" element={< PatientChatView/>}/>
+          <Route path="/patient-chat" element={< PatientChatView/>}/>
           <Route path="/patient-dashboard" element={< PatientDashboardView/>}/>
           <Route path="dashboard/:room" element={<Dashboard />} />
           </Route>
