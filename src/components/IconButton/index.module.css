@@ -17,6 +17,6 @@
 .button:hover {
   opacity: 0.9;
 }
-.button:disabled {
+/* .button:disabled {
   cursor: no-drop;
-}
+} */

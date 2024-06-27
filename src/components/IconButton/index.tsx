@@ -13,6 +13,7 @@ function IconButton(props: Props) {
   return (
     <button
       {...rest}
+      type="button"
       className={clsx(styles.button, className, styles[variant], { [styles.disabled]: disabled })} 
       disabled={disabled} 
     />

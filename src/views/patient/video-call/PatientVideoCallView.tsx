@@ -7,7 +7,7 @@ const PatientVideoCallView = () => {
   const { room = "" } = useParams();
 
   if (!state) return <div>State Not Available</div>;
-  return <PatientMeeting roomName={room} jwt={"1"} />
+  return <PatientMeeting roomName={room} jwt={state.jwt} />
 };
 
 export default PatientVideoCallView;

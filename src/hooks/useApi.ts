@@ -2,8 +2,8 @@ import axios from "axios";
 import * as cryptoService from "../services/crypto";
 
 function useApi() {
-  const baseURL = "https://telemedicine-backend.infinityclinic.co/api";
-  // const baseURL = "http://127.0.0.1:8000/api";
+  // const baseURL = "https://telemedicine-backend.infinityclinic.co/api";
+  const baseURL = "http://127.0.0.1:5000/api";
   const headers = {
     "Access-Control-Allow-Headers": "Content-Type",
     "Content-Type": "application/json",

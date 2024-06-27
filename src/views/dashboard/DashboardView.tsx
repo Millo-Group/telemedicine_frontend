@@ -50,7 +50,6 @@ const Dashboard = () => {
             <div className="row">
               <div className="col-xxxl-3 col-xl-3 col-12 ">
                 <MeetingRoom state={state} />
-                <Chat />
               </div>
               {/* Reports */}
 
