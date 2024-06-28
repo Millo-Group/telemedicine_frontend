@@ -50,8 +50,9 @@ function Meeting(props: Props) {
           jitsiApiRef.current = api; 
           api.addListener("readyToClose", readyToClose);
         }}
+        
         interfaceConfigOverwrite={{
-          TOOLBAR_BUTTONS: [], // Hide all built-in toolbar buttons
+          TOOLBAR_BUTTONS: [], 
         }}
         configOverwrite={{
           startWithVideoMuted: true,
@@ -59,7 +60,13 @@ function Meeting(props: Props) {
           prejoinPageEnabled: false,
           enableRecording: true,
           pipEnabled: true,
+          disableProfile: true, 
+          requireDisplayName: false, 
         }}
+        userInfo= {{
+          displayName: '',
+          email: '',
+      }}
         getIFrameRef={(iframeRef) => {
           iframeRef.style.height = "92vh";
         }}

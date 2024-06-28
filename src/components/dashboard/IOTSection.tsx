@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import TemperatureItem from "./DashboardElements/TemperatueItem";
 import BPItem from "./DashboardElements/BPItem";
 import PO2Item from "./DashboardElements/POItem";
+import UnavailableItem from "./DashboardElements/UnavailableItem";
 interface Props {
   patientId: string;
 }
@@ -73,7 +74,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                       className="nav-link active"
                       data-bs-toggle="tab"
                       href="#home8"
-                      role="tab"
+                        role="tab"
                       aria-selected="true"
                     >
                       <span className="material-symbols-outlined mds-24">
@@ -126,8 +127,11 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                   <div className="tab-pane active" id="home8" role="tabpanel">
                     {IOTData?.map((el: any) => {
                       if (el.type === "TEMPERATURE")
-                        return <TemperatureItem temperature={el} />;
+                        return <TemperatureItem temperature={el}/>;
                     })}
+                    {
+                      IOTData?.length == 0 && <UnavailableItem  heading="TEMPERATURE"/>
+                      }
                   </div>
                   <div className="tab-pane " id="profile8" role="tabpanel">
                     <div className="p-15 ">
@@ -137,13 +141,19 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                   </div>
                   <div className="tab-pane" id="messages15" role="tabpanel">
                     {IOTData?.map((el: any) => {
-                      if (el.type === "BP") return <BPItem bp={el} />;
+                      if (el.type === "BP") return <BPItem bp={el} />
                     })}
+                     {
+                      IOTData?.length == 0 && <UnavailableItem heading="BP"/>
+                      }
                   </div>
                   <div className="tab-pane" id="messages16" role="tabpanel">
                     {IOTData?.map((el: any) => {
                       if (el.type === "PO2") return <PO2Item po2={el} />;
                     })}
+                     {
+                      IOTData?.length == 0 && <UnavailableItem heading="PO2"/>
+                      }
                   </div>
                 </div>
               </div>

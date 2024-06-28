@@ -30,3 +30,7 @@
 .videoCallOption span:hover{
   color: #00AFF0;
 }
+#largeVideoWrapper {
+  inset: 0px !important;
+  height: 100vh !important;
+}
