@@ -1,7 +1,7 @@
 import { useState, MouseEventHandler, useEffect } from "react";
 import UiInputBox from "./UiInputBox";
 import styles from "./index.module.css";
-import useApi from "../../hooks/useApi";
+import {useApi} from "../../hooks/useApi";
 interface props {
   show?: Boolean;
   toggleModal?: MouseEventHandler<HTMLButtonElement>;

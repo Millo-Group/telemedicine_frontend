@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext } from "react";
 import { ChatContext } from "../providers/ChatProvider";
 
 function useChat() {

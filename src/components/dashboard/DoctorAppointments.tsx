@@ -7,7 +7,7 @@ import { useApi } from "../../hooks/useApi";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import useChat from "../../hooks/useChat";
-import Spinner from "../../components/Spinner";
+import Spinner from "../Spinner";
 import { useApp } from "../../providers/AppProvider";
 
 const Appoitments: React.FC = () => {

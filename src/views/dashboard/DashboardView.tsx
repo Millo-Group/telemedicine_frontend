@@ -1,19 +1,14 @@
-import IOTSection from "../../components/dahsboard/IOTSection";
-import HumanAccordionSection from "../../components/dahsboard/HumanAccordionSection";
-import ReportSection from "../../components/dahsboard/ReportSection";
-import DoctorAppointments from "../../components/dahsboard/DoctorAppointments";
+import IOTSection from "../../components/dashboard/IOTSection";
+import HumanAccordionSection from "../../components/dashboard/HumanAccordionSection";
 import MeetingRoom from "../../components/Room/join";
-import PatientInformationSection from "../../components/MiddleSection/PatientInformationSection";
-// import useChat from "../../hooks/useChat";
-import { useLocation } from "react-router-dom";
-import useApi from "../../hooks/useApi";
+import { useApi } from "../../hooks/useApi";
 import { useEffect, useState } from "react";
 import PatientReportBar from "../../components/dahsboard/DashboardElements/PatientReportBar";
-import Chat from "../../components/Chat";
+import { useApp } from "../../providers/AppProvider";
+
 
 const Dashboard = () => {
-  // const { currentAppointment } = useChat();
-  const { state } = useLocation();
+  const { eventId, setCustomerId } = useApp();
   let [patientId, setPatientId] = useState<any>([]);
   let [isLoading, setIsLoading] = useState<boolean>(true);
   const api = useApi();
@@ -21,9 +16,9 @@ const Dashboard = () => {
     try {
       let {
         data: { partner_ids },
-      } = await api.get(`events/${1}`);
-      let patient_id = partner_ids[1] ? partner_ids[1] : partner_ids[0];
-      setPatientId(patient_id);
+      } = await api.get(`events/${eventId}`);
+      const patient_id = partner_ids[1] ? partner_ids[1] : partner_ids[0];
+      setPatientId(patient_id)
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -46,12 +41,11 @@ const Dashboard = () => {
                   <DoctorAppointments />
                 </div>
               </div> */}
-           
+
             {/* Main Section */}
             <div className="row">
               <div className="col-xxxl-3 col-xl-3 col-12 ">
-                <MeetingRoom state={state} />
-                <Chat />
+                <MeetingRoom />
               </div>
               {/* Reports */}
 
@@ -60,7 +54,7 @@ const Dashboard = () => {
                   state={state}
                   patientId={patientId}
                 /> */}
-                 <PatientReportBar patientId={patientId}  state={state}/>
+                <PatientReportBar patientId={patientId} />
               </div>
 
               <div className="col-xxxl-4 col-xl-4 col-12 p-0">

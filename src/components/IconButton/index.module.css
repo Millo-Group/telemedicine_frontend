@@ -9,6 +9,7 @@
   justify-content: center;
   background-color: transparent;
   cursor: pointer;
+  color: #cccccfde;
 }
 .primary {
   background-color: #00aff0;
@@ -16,3 +17,6 @@
 .button:hover {
   opacity: 0.9;
 }
+/* .button:disabled {
+  cursor: no-drop;
+} */

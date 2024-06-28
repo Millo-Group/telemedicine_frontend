@@ -1,7 +1,9 @@
 import { JaaSMeeting } from "@jitsi/react-sdk";
 import styles from "./index.module.css";
-import Chat from "../Chat";
 import useChat from "../../hooks/useChat";
+import VideoCallChat from "../VideoCallChat";
+import { useRef, useState } from "react";
+import IconButton from "../IconButton";
 
 type Props = {
   jwt: string;
@@ -9,13 +11,17 @@ type Props = {
 };
 
 function Meeting(props: Props) {
-  // const navigate = useNavigate();
-  const { setApi ,setCurrentAppointment} = useChat();
+  const { setApi, setCurrentAppointment } = useChat();
+  const [isFullscreen, setIsFullscreen] = useState(false); // State to manage fullscreen mode
+  const iframeRef = useRef<HTMLDivElement>();
 
   const readyToClose = () => {
-    setCurrentAppointment({})
-    
+    setCurrentAppointment({});
+    if (isFullscreen) {
+      toggleFullscreen();
+    }
   };
+
   const toolbarButtons = [
     "camera",
     //  'chat',
@@ -51,33 +57,69 @@ function Meeting(props: Props) {
     "videoquality",
     "whiteboard",
   ];
-  // return <JitsiMeeting domain="localhost:8000" roomName="tessdfsdfgd" />;
+
+  const toggleFullscreen = () => {
+    if (iframeRef.current) {
+      const iframe = iframeRef.current;
+      setIsFullscreen(!isFullscreen);
+      if (!isFullscreen) {
+        iframe.style.position = "fixed";
+        iframe.style.top = "0";
+        iframe.style.left = "0";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.zIndex = "9999";
+      } else {
+        iframe.style.position = "relative";
+        iframe.style.width = "100%";
+        iframe.style.height = "351px"; // Set back to original height
+      }
+    }
+  };
 
   return (
-    <div className={styles.root}>
+    <div className={isFullscreen ? styles.fullscreenRoot : styles.root}>
       <JaaSMeeting
-        appId="vpaas-magic-cookie-2245ac56e2d94efe9ab7ef727989f4b1"
+        appId={process.env.REACT_APP_JITSI_APP_ID!}
         onApiReady={(api) => {
           setApi(api);
           api.addListener("readyToClose", readyToClose);
         }}
         interfaceConfigOverwrite={{
           TOOLBAR_BUTTONS: toolbarButtons,
+          isFullscreen: isFullscreen
         }}
         configOverwrite={{
           startWithVideoMuted: true,
           startWithAudioMuted: true,
           prejoinPageEnabled: false,
           enableRecording: true,
-          pipEnabled:true,
+          pipEnabled: true,
         }}
-        getIFrameRef={(iframeRef) => {
-          iframeRef.style.height = "351px";
+        getIFrameRef={(_iframeRef) => {
+          iframeRef.current = _iframeRef;
+          _iframeRef.style.height = "351px";
         }}
         {...props}
       />
+      <div className={isFullscreen ? styles.fullsizebutton : styles.fullscreenButton} onClick={toggleFullscreen}>
+        <span>
+          {/* {isFullscreen ? "Exit Fullscreen " : "Enter Fullscreen"} */}
+          {
+            isFullscreen ?
+              <IconButton className={`material-symbols-outlined ${styles.fullscreenButton}`} >
+                zoom_in_map
+              </IconButton>
+              :
+              <IconButton className={`material-symbols-outlined ${styles.fullscreenButton}`} >
+                zoom_out_map
+              </IconButton>
+          }
+
+        </span>
+      </div>
       <div className={styles.chat}>
-        <Chat />
+        <VideoCallChat />
       </div>
     </div>
   );

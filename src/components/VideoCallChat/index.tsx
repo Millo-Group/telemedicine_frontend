@@ -1,23 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import ChatInput from "../ChatInput";
 import ChatMessage from "../ChatMessage";
-import useChat from "../../hooks/useChat";
-import Avatar from "../../assets/images/avatar.jpg";
-import useApi from "../../hooks/useApi";
-import { useLocation } from "react-router-dom";
 
-function Chat() {
-  const { messages } = useChat();
+import { useApi } from "../../hooks/useApi";
+import VideoCallChatInput from "../VideoCallChatInput";
+import useChat from "../../hooks/useChat";
+import { useApp } from "../../providers/AppProvider";
+
+function VideoCallChat() {
+  const { messages, sendMessage } = useChat()
   const api = useApi();
-  const { state } = useLocation();
-  const [patientName, setPatientName] = useState("");
+  const { eventId } = useApp();
+  const [patientName, setPatientName] = useState("Message");
 
   const getEventsDetails = async () => {
     try {
       let {
         data: { display_name },
-      } = await api.get(`events/${state.event_id}/details`);
+      } = await api.get(`events/${eventId}/details`);
       setPatientName(display_name);
     } catch (error) {
       console.log(error);
@@ -31,7 +32,7 @@ function Chat() {
 
   return (
     <div className={`box ${styles.root}`}>
-      <div className="box-header p-0 pt-3 pb-2">
+      {/* <div className="box-header p-0 pt-3 pb-2">
         <div className="media align-items-top p-0">
           <img className="avatar avatar-lg mx-0" src={Avatar} alt="avatar" />
           <div className="d-flex d-block justify-content-between align-items-center w-p100">
@@ -50,18 +51,18 @@ function Chat() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className={styles.chat_list}>
-        {messages.map((message, index) => (
-          <ChatMessage key={index} data={message} patientclass={false} />
+        {messages && messages.map((message, index) => (
+          <ChatMessage key={index} data={message} isBot={false} />
         ))}
         <div className={styles.chat_end} />
       </div>
+
       <div className={styles.footer}>
-        <ChatInput />
+        <VideoCallChatInput handleSend={sendMessage} />
       </div>
     </div>
   );
 }
-
-export default Chat;
+export default VideoCallChat;
