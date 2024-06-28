@@ -33,7 +33,7 @@ const Dashboard = () => {
   return (
     <>
       <div className="content-wrapper">
-        {!isLoading && (
+        {true && (
           <section className="content">
             {/* Casousal Section */}
             {/* <div className="row">
