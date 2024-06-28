@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import Spinner from "../../components/Spinner";
 import Box from "../../components/Box";
-import {useApi} from "../../hooks/useApi";
+import { useApi } from "../../hooks/useApi";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useApp } from "../../providers/AppProvider";
 
 type AuthPayload = {
   employee_id?: number;
@@ -13,19 +14,27 @@ type AuthPayload = {
 function Authorization() {
   const api = useApi();
   const [searchParams] = useSearchParams();
+  const { setCustomerId, setEmployeeId, setTokens, setEventId, employeeId, customerId, eventId } = useApp();
 
   const navigate = useNavigate();
-  const event_id = searchParams.get("event_id");
-  const employee_id = searchParams.get("employee_id");
-  const customer_id = searchParams.get("customer_id");
+  const event_id = searchParams.get("event_id") || eventId?.toString();
+  const employee_id = searchParams.get("employee_id") || employeeId?.toString();
+  const customer_id = searchParams.get("customer_id") || customerId?.toString();
 
   const authUser = async (params: AuthPayload) => {
     try {
+      setCustomerId(params.customer_id);
+      setEmployeeId(params.employee_id);
+      setEventId(params.event_id)
       const { data } = await api.post<{
         token: string;
         jitsi_jwt: string;
         room_name: string;
       }>("/authenticate", params);
+      setTokens({
+        token: data.token,
+        jitsi_token: data.jitsi_jwt,
+      })
 
       localStorage.setItem("token", data.token);
       let redirectTo = params?.employee_id ? "dashboard" : "patient-videocall";

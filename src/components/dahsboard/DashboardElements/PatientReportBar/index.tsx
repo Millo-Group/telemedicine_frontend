@@ -9,10 +9,9 @@ import { useApi } from "../../../../hooks/useApi";
 
 interface Props {
   patientId: string;
-  state?: any;
 }
 
-const PatientReportBar: React.FC<Props> = ({ patientId, state }) => {
+const PatientReportBar: React.FC<Props> = ({ patientId }) => {
   const [reportsData, setReportsData] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState('notes');
   const api = useApi();
@@ -42,18 +41,17 @@ const PatientReportBar: React.FC<Props> = ({ patientId, state }) => {
         </ul>
       </div>
       <div className={styles.tabs}>
-      <div className={styles.tabContent}>
-        {activeTab === 'notes' && <>
-          <PatientInformationSection
-                  state={state}
-                  patientId={patientId}
-                />
-        </>}
-        {activeTab === 'referrals' && <TabContent data={reportsData} type="REFERRALS" />}
-        {activeTab === 'labs' && <TabContent data={reportsData} type="LABS" />}
-        {activeTab === 'erx' && <TabContent data={reportsData} type="eRX" />}
-        {activeTab === 'images' && <TabContent data={reportsData} type="IMAGE" />}
-      </div>
+        <div className={styles.tabContent}>
+          {activeTab === 'notes' && <>
+            <PatientInformationSection
+              patientId={patientId}
+            />
+          </>}
+          {activeTab === 'referrals' && <TabContent data={reportsData} type="REFERRALS" />}
+          {activeTab === 'labs' && <TabContent data={reportsData} type="LABS" />}
+          {activeTab === 'erx' && <TabContent data={reportsData} type="eRX" />}
+          {activeTab === 'images' && <TabContent data={reportsData} type="IMAGE" />}
+        </div>
       </div>
     </div>
   );

@@ -3,19 +3,20 @@ import AccordionActionButtons from "./AccordionActionButton";
 import React, { useState, useEffect } from "react";
 import Inputform from "./PatientInputFrom";
 import Soaptemplate from "./SoapTemplate";
-import {useApi} from "../../hooks/useApi";
+import { useApi } from "../../hooks/useApi";
 import debounce from "lodash/debounce";
 import PatientFileReport from "./PatientReports";
 import AssessmentNoteModal from "./AssessmentNoteModal";
 import ObjectiveNoteModal from "./ObjectiveNoteModal";
 import SubjectiveNoteModal from "./SubjectiveNoteModal";
 import PlanNoteModal from "./PlanNoteModal";
+import { useApp } from "../../providers/AppProvider";
 interface props {
   state?: any;
   patientId?: String;
 }
 
-const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
+const PatientInformationSection: React.FC<props> = ({ patientId }) => {
   const api = useApi();
   const [isInitiated, setIsInitiated] = useState(false);
   const [subjectiveValue, setSubjectiveValue] = useState("");
@@ -31,6 +32,7 @@ const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
   const [isAssessmentModalDisplay, setIsAssessmentModalDisplay] =
     useState(false);
   const [notesData, setNotesData] = useState([]);
+  const { eventId } = useApp();
 
   const getNotesData = async () => {
     try {
@@ -241,12 +243,12 @@ const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
         break;
     }
   };
-  
+
   // Get event details
 
   const getEventsDetails = async () => {
     try {
-      let { data } = await api.get(`events/${state.event_id}/details`);
+      let { data } = await api.get(`events/${eventId}/details`);
       setSubjectiveValue(data.digital_data_subjective_speech_text);
       setObjectiveValue(data.digital_data_objective_speech_text);
       setPlanValue(data.digital_data_plan_speech_text);
@@ -276,7 +278,7 @@ const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
     await api.post<{
       type: string;
       value: string;
-    }>(`events/${state.event_id}/details`, payload);
+    }>(`events/${eventId}/details`, payload);
     setIsInitiated(false);
     getEventsDetails();
     setIsStopListening(false);
@@ -284,7 +286,7 @@ const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
   const deletePatientData = async (type: string) => {
     if (!type) return;
 
-    await api.delete(`events/${state.event_id}/details/${type}`);
+    await api.delete(`events/${eventId}/details/${type}`);
 
     switch (type) {
       case "subjective":
@@ -347,9 +349,8 @@ const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
         <div className="accordion-item" key={item.id}>
           <h2 className="accordion-header" id={`flush-heading${item.id}`}>
             <button
-              className={`accordion-button ${
-                expanded === item.id ? "" : "collapsed"
-              } border rounded mt-3`}
+              className={`accordion-button ${expanded === item.id ? "" : "collapsed"
+                } border rounded mt-3`}
               type="button"
               style={{
                 backgroundColor: "#Dfe7f6",
@@ -368,9 +369,8 @@ const PatientInformationSection: React.FC<props> = ({ state, patientId }) => {
           </h2>
           <div
             id={`flush-collapse${item.id}`}
-            className={`accordion-collapse collapse ${
-              expanded === item.id ? "show" : ""
-            }`}
+            className={`accordion-collapse collapse ${expanded === item.id ? "show" : ""
+              }`}
             aria-labelledby={`flush-heading${item.id}`}
             data-bs-parent="#accordionFlushExample"
           >

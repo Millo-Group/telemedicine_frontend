@@ -3,16 +3,17 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import DummyAvatarImage from "../../assets/images/dummy-carousal-avtar.jpg";
 import React, { useEffect, useState } from "react";
-import {useApi} from "../../hooks/useApi";
+import { useApi } from "../../hooks/useApi";
 import moment from "moment";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useChat from "../../hooks/useChat";
 import Spinner from "../../components/Spinner";
+import { useApp } from "../../providers/AppProvider";
 
 const Appoitments: React.FC = () => {
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState<any>(0);
-  const { state } = useLocation();
+  const { eventId, employeeId } = useApp();
   const [isLoading, setIsLoading] = useState(false);
   const [appointments, setAppoitments] = useState<any[]>([]);
   const { setCurrentAppointment } = useChat();
@@ -51,7 +52,7 @@ const Appoitments: React.FC = () => {
     setIsLoading(false);
   };
   const getEventAppointment = async () => {
-    let { data } = await api.get(`events/${state.event_id}`);
+    let { data } = await api.get(`events/${eventId}`);
     return data;
   };
   const setEventAppointment = (eventAppointment: Record<string, any> = {}) => {
@@ -64,7 +65,7 @@ const Appoitments: React.FC = () => {
     appointment: Record<string, any> = {}
   ) => {
     navigate(
-      `/authenticate?employee_id=${state.employee_id}&event_id=${appointment.id}`
+      `/authenticate?employee_id=${employeeId}&event_id=${appointment.id}`
     );
     setCurrentAppointment(appointment);
   };
@@ -111,7 +112,7 @@ const Appoitments: React.FC = () => {
         orderedAppointmentsList.splice(1, 0, currentTimeAppointment);
         setCurrentAppointment(currentTimeAppointment);
       } else el.startTime = startDate + " " + startTime;
-      if (el.id === +state.event_id) {
+      if (el.id === eventId) {
         setActiveIndex(index - 1);
       }
     });
@@ -157,9 +158,8 @@ const Appoitments: React.FC = () => {
                         />
                       </div>
                       <div
-                        className={`d-flex flex-column pe-100  fw-500 ${
-                          appoitment.length > 1 && "flex-grow-1 pe-0"
-                        }`}
+                        className={`d-flex flex-column pe-100  fw-500 ${appoitment.length > 1 && "flex-grow-1 pe-0"
+                          }`}
                       >
                         <p className="hover-primary text-fade mb-1 fs-12">
                           {appoitment.patient_id[1]}{" "}
@@ -171,13 +171,12 @@ const Appoitments: React.FC = () => {
                       </div>
                       <div>
                         <button
-                          disabled={appoitment.id === +state.event_id}
+                          disabled={appoitment.id === eventId}
                           onClick={() =>
                             navigateToCurrentAppointment(appoitment)
                           }
-                          className={`waves-effect waves-circle btn btn-circle btn-primary-light btn-sm d-flex justify-content-center align-items-center  ${
-                            appoitment.id === +state.event_id && "disabled-btn"
-                          }`}
+                          className={`waves-effect waves-circle btn btn-circle btn-primary-light btn-sm d-flex justify-content-center align-items-center  ${appoitment.id === eventId && "disabled-btn"
+                            }`}
                         >
                           <span className="material-symbols-outlined fs-12">
                             call

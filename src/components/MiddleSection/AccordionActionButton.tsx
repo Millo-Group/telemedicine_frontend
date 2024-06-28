@@ -37,7 +37,7 @@ const AccordionActionButtons: React.FC<Props> = ({
   } = useSpeechToText({
     continuous: true,
     crossBrowser: true,
-    googleApiKey: process.env.GOOGLE_CLOUD_API_KEY || "",
+    googleApiKey: process.env.REACT_APP_GOOGLE_CLOUD_API_KEY || "",
     useLegacyResults: false
   });
 

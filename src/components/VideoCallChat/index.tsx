@@ -3,23 +3,22 @@ import styles from "./index.module.css";
 import ChatInput from "../ChatInput";
 import ChatMessage from "../ChatMessage";
 
-import {useApi} from "../../hooks/useApi";
-import { useLocation } from "react-router-dom";
-import useChatBot from "../../hooks/useChatBot";
+import { useApi } from "../../hooks/useApi";
 import VideoCallChatInput from "../VideoCallChatInput";
 import useChat from "../../hooks/useChat";
+import { useApp } from "../../providers/AppProvider";
 
 function VideoCallChat() {
-const {messages, sendMessage} = useChat()
+  const { messages, sendMessage } = useChat()
   const api = useApi();
-  const { state } = useLocation();
+  const { eventId } = useApp();
   const [patientName, setPatientName] = useState("Message");
 
   const getEventsDetails = async () => {
     try {
       let {
         data: { display_name },
-      } = await api.get(`events/${state.event_id}/details`);
+      } = await api.get(`events/${eventId}/details`);
       setPatientName(display_name);
     } catch (error) {
       console.log(error);
@@ -55,7 +54,7 @@ const {messages, sendMessage} = useChat()
       </div> */}
       <div className={styles.chat_list}>
         {messages && messages.map((message, index) => (
-          <ChatMessage key={index} data={message} patientclass={false} />
+          <ChatMessage key={index} data={message} isBot={false} />
         ))}
         <div className={styles.chat_end} />
       </div>

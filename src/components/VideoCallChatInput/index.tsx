@@ -13,7 +13,7 @@ function VideoCallChatInput({ placeholder, handleSend }: ChatInputProps) {
   const handleSendMessage = (e: any) => {
     console.log(e.target);
 
-    e.preventDefault(); 
+    e.preventDefault();
     if (message?.length > 0 && handleSend) {
       handleSend(message);
       setMessage("");
@@ -41,6 +41,9 @@ function VideoCallChatInput({ placeholder, handleSend }: ChatInputProps) {
             mic
           </IconButton>
         </div>
+        <IconButton className={`${styles.sendButtonhover} material-symbols-outlined`} onClick={(message?.length == 0) ? undefined : handleSendMessage} disabled={message?.length == 0}>
+          send
+        </IconButton>
       </div>
     </form>
   );

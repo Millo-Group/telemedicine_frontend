@@ -16,7 +16,10 @@ const TabLink: React.FC<TabLinkProps> = ({ tab, activeTab, setActiveTab, label }
     <li className="nav-item mx-2">
       <a
         className={navLinkClasses}
-        onClick={() => setActiveTab(tab)}
+        onClick={(e) => {
+          e.preventDefault();
+          setActiveTab(tab)
+        }}
         href={`#${tab}`}
       >
         {label}

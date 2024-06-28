@@ -1,12 +1,7 @@
-import { useLocation } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import styles from './index.module.css'
 import ChatInput from "../../../components/ChatInput";
-const PatientDashboardView = () => {
-  const { state } = useLocation();
-  const { room = "" } = useParams();
 
-    if (!state) return <div>State Not Available</div>;
+const PatientDashboardView = () => {
   return (
     <div className={styles.root}>
       <div className="modal center-modal fade" id="modal-admit" >
@@ -31,19 +26,19 @@ const PatientDashboardView = () => {
         </div>
       </div>
       <div className="modal center-modal fade" id="modal-video">
-	  <div className="modal-dialog">
-		<div className="modal-content modal-video-content">
-		  <a href="#" className="video-close text-primary" data-bs-dismiss="modal" aria-label="Close"><span className="material-symbols-outlined">cancel</span></a>	
-		  <div className="modal-body video-body">
-			<div className="video-fullscreen"><img src="../images/video-calling-img.png" className="img-fluid" alt=""/></div>
-			<div className="video-call-btn">
-				<a href="/patient-videocall/1" type="button" className="waves-effect waves-light btn btn-primary">Start Video Call</a>
-			</div>
-		  </div>
-		  
-		</div>
-	  </div>
-	</div>
+        <div className="modal-dialog">
+          <div className="modal-content modal-video-content">
+            <a href="#" className="video-close text-primary" data-bs-dismiss="modal" aria-label="Close"><span className="material-symbols-outlined">cancel</span></a>
+            <div className="modal-body video-body">
+              <div className="video-fullscreen"><img src="../images/video-calling-img.png" className="img-fluid" alt="" /></div>
+              <div className="video-call-btn">
+                <a href="/patient-videocall/1" type="button" className="waves-effect waves-light btn btn-primary">Start Video Call</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
       <h4>Hi, Ms. Lisa</h4>
       <p>How can I assist you Today ?</p>
       <div className=" justify-content-between align-items-center  p-5 overflow-hidden" style={{ margin: "auto", width: "100%" }}>
@@ -131,16 +126,16 @@ const PatientDashboardView = () => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal-admit"
                 >
-                <div>
-                <span className="material-symbols-outlined">
-                    groups
-                  </span>
-                </div>
-                <div>
-                  <span>
-                   1 Person waiting
-                  </span>
-                </div>
+                  <div>
+                    <span className="material-symbols-outlined">
+                      groups
+                    </span>
+                  </div>
+                  <div>
+                    <span>
+                      1 Person waiting
+                    </span>
+                  </div>
 
                 </button>
               </div>

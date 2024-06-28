@@ -1,5 +1,5 @@
 import FullScreenIcon from "../../assets/images/full-screen-icon.svg";
-import {useApi} from "../../hooks/useApi";
+import { useApi } from "../../hooks/useApi";
 import { useEffect, useState } from "react";
 import TemperatureItem from "./DashboardElements/TemperatueItem";
 import BPItem from "./DashboardElements/BPItem";

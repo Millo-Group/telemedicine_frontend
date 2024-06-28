@@ -6,7 +6,7 @@ import ChatLoader from "../ChatLoader";
 
 type Props = {
   data: IncomingMessage | OutgoingMessage;
-  patientclass: boolean;
+  isBot: boolean;
   loading?: boolean;
 };
 
@@ -15,7 +15,7 @@ function isIncomingMessage(object: any): object is IncomingMessage {
 }
 
 function ChatMessage(props: Props) {
-  const { data, patientclass, loading } = props;
+  const { data, isBot, loading } = props;
   const message = data.message;
   const isIncoming = isIncomingMessage(data);
 
@@ -24,24 +24,24 @@ function ChatMessage(props: Props) {
     [isIncoming ? styles.incoming : styles.outgoing]: true,
   });
 
-  const patientClass = clsx({
+  const boatClasses = clsx({
     [styles.patientRoot]: true,
     [isIncoming ? styles.patientIncoming : styles.patientOutgoing]: true,
   });
 
-  const finalClass = patientclass ? patientClass : className;
+  const finalClass = isBot ? boatClasses : className;
   const mainContainerClass = isIncoming ? styles.MessageContainerLeft : styles.MessageContainerRight;
 
   return (
     <div className={mainContainerClass}>
-      <img src={avatar} alt="Dummy image" className={styles.avatar} />
+      {isBot && <img src={avatar} alt="User" className={styles.avatar} />}
       <div className={finalClass}>
         <div className={styles.messageContent}>
           {
-           message
+            message
           }
           {
-            loading && <ChatLoader/>
+            loading && <ChatLoader />
           }
         </div>
       </div>

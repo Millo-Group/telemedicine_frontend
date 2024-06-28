@@ -22,12 +22,10 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   scroll-behavior: smooth;
-  padding: 10px 10px 0px 10px;
-  /* min-height: 300px; */
   flex-direction: column;
   overflow-anchor: auto !important;
   min-height: 68vh;
-  padding: 3rem;
+  padding: 1rem;
   .row {
     display: flex;
     justify-content: space-between;
@@ -48,9 +46,11 @@
     text-align: right;
   }
 }
-@media (max-width:768px) {  
+@media (max-width: 768px) {
   .chat_list {
     min-height: 60vh;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 .chat_end {

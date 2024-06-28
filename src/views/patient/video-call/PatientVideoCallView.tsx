@@ -1,13 +1,12 @@
-import { useLocation } from "react-router-dom";
 import PatientMeeting from "../../../components/patient-meeting/Meeting";
 import { useParams } from "react-router-dom";
+import { useApp } from "../../../providers/AppProvider";
 
 const PatientVideoCallView = () => {
-  const { state } = useLocation();
+  const { jitsi_token } = useApp();
   const { room = "" } = useParams();
 
-  if (!state) return <div>State Not Available</div>;
-  return <PatientMeeting roomName={room} jwt={state.jwt} />
+  return <PatientMeeting roomName={room} jwt={jitsi_token} />
 };
 
 export default PatientVideoCallView;

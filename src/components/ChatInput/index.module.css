@@ -17,10 +17,10 @@
   border-radius: 10px;
   overflow: hidden;
   padding: 5px;
-  background-color: #EADDFF;
+  background-color: #eaddff;
   margin-bottom: 60px;
 }
-@media (max-width:768px) {  
+@media (max-width: 768px) {
   .root {
     margin-bottom: 120px;
   }
@@ -28,44 +28,48 @@
 .input::-webkit-scrollbar {
   display: none;
 }
-  .textbutton{
-    /* background: #f3f6f9 !important; */
-    border-radius: 50% !important;
-    padding: 0px;
-    margin-right: 10px;
-    color:#6c757d;
-    border: 1px solid #f3f6f9 !important;
-    box-shadow: #f3f6f9;
-    font-size: 15px;
-    /* transition: .3s ease-out;
+.textbutton {
+  /* background: #f3f6f9 !important; */
+  border-radius: 50% !important;
+  padding: 0px;
+  margin-right: 10px;
+  color: #6c757d;
+  border: 1px solid #f3f6f9 !important;
+  box-shadow: #f3f6f9;
+  font-size: 15px;
+  /* transition: .3s ease-out;
     border: 1px solid transparent; */
-  }
-  .hoverclass :hover{
-    color: #fff;
-    background:#6c757d !important;
-    transition: .3s ease-out;
-    border: 1px solid transparent;
-  }
-.sendButtonhover{
+}
+.hoverclass :hover {
+  color: #fff;
+  background: #6c757d !important;
+  transition: 0.3s ease-out;
+  border: 1px solid transparent;
+}
+.sendButtonhover {
   background-color: #5156be;
   border-color: #5156be;
   color: #cccccfde;
   text-align: center;
-  width: 2.1em;
-  height: 2.1em;
+  width: 1.8em;
+  min-width: 1.8em;
+  height: 1.8em;
   line-height: 2.5em;
   border-radius: 50%;
   position: relative;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   vertical-align: middle;
 
-  transition: .3s ease-out;
+  transition: 0.3s ease-out;
   border: 1px solid transparent;
 }
 input::placeholder {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useApi } from "./useApi";
 
-
 type Message = IncomingMessage | OutgoingMessage;
 
 function useChatBot() {
@@ -14,16 +13,15 @@ function useChatBot() {
    * handle loading state
    * @param text
    */
-  async function setResult(text: string, eventId?: string) {
-    setLoading(true); 
+  async function setResult(text: string) {
+    setLoading(true);
     try {
       const payload = {
         queryInput: {
           text: text,
-          eventId: eventId || ""
-        }
-      }
-      let { data } = await api.post(`/google-intent`, payload);
+        },
+      };
+      const { data } = await api.post(`/google-intent`, payload);
       setMessages((messages) => [
         ...messages,
         {
@@ -41,13 +39,13 @@ function useChatBot() {
    * Set message to state and invoke get result
    * @param message
    */
-  function handleSetMessage(message: string, eventId?: string){
-      setMessages((messages) => [
-        ...messages,
-        { message: message, from: "me", privateMessage: false, nick: "User" },
-      ]);
-      setResult(message, eventId)
-    }
+  function handleSetMessage(message: string) {
+    setMessages((messages) => [
+      ...messages,
+      { message: message, from: "me", privateMessage: false, nick: "User" },
+    ]);
+    setResult(message);
+  }
 
   return { messages, setMessage: handleSetMessage, chatLoading: loading };
 }
