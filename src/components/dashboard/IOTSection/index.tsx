@@ -1,10 +1,11 @@
-import FullScreenIcon from "../../assets/images/full-screen-icon.svg";
-import {useApi} from "../../hooks/useApi";
 import { useEffect, useState } from "react";
-import TemperatureItem from "./DashboardElements/TemperatueItem";
-import BPItem from "./DashboardElements/BPItem";
-import PO2Item from "./DashboardElements/POItem";
-import UnavailableItem from "./DashboardElements/UnavailableItem";
+import FullScreenIcon from "../../../assets/images/full-screen-icon.svg";
+import { useApi } from "../../../hooks/useApi";
+import UnavailableItem from "../DashboardElements/UnavailableItem";
+import BPItem from "../DashboardElements/BPItem";
+import PO2Item from "../DashboardElements/POItem";
+import TemperatureItem from "../DashboardElements/TemperatueItem";
+import styles from './index.module.css'
 interface Props {
   patientId: string;
 }
@@ -12,9 +13,11 @@ interface Props {
 const IOTSection: React.FC<Props> = ({ patientId }) => {
   let [IOTData, setIOTData] = useState<any>([]);
   const [activeTab, setActiveTab] = useState<string>("TEMPERATURE")
+  const [loading, setLoading] = useState<boolean>(false);
   const api = useApi();
   const getPatientIOTReports = async () => {
     try {
+      setLoading(true)
       let { data } = await api.get<{
         patient_name: string;
         patient_id: number;
@@ -23,9 +26,13 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
         timestamp: string;
         value: number;
       }>(`iot?patient_id=${patientId}`);
+      setLoading(false)
       setIOTData(data);
     } catch (error) {
+      setLoading(false)
       console.log(error);
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -134,7 +141,14 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                         return <TemperatureItem temperature={el}/>;
                     })}
                     {
-                      IOTData?.length == 0 && <UnavailableItem  heading="TEMPERATURE"/>
+                      (IOTData?.length == 0  && !loading) && <UnavailableItem  heading="TEMPERATURE"/>
+                      }
+                      {
+                        loading && <div className={styles.spinner}>
+                            <div role="status" className={`spinner-border`}> 
+                        <span className="sr-only"></span>
+                      </div>
+                        </div> 
                       }
                   </div>
                   <div className="tab-pane " id="profile8" role="tabpanel">
@@ -148,7 +162,14 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                       if (el.type === "BP") return <BPItem bp={el} />
                     })}
                      {
-                      IOTData?.length == 0 && <UnavailableItem heading="BP"/>
+                      (IOTData?.length == 0 && !loading) && <UnavailableItem heading="BP"/>
+                      }
+                       {
+                        loading && <div className={styles.spinner}>
+                        <div role="status" className={`spinner-border`}> 
+                    <span className="sr-only"></span>
+                  </div>
+                    </div> 
                       }
                   </div>
                   <div className="tab-pane" id="messages16" role="tabpanel">
@@ -156,7 +177,14 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                       if (el.type === "PO2") return <PO2Item po2={el} />;
                     })}
                      {
-                      IOTData?.length == 0 && <UnavailableItem heading="PO2"/>
+                      (IOTData?.length == 0 && !loading) && <UnavailableItem heading="PO2"/>
+                      }
+                       {
+                        loading && <div className={styles.spinner}>
+                        <div role="status" className={`spinner-border`}> 
+                    <span className="sr-only"></span>
+                  </div>
+                    </div> 
                       }
                   </div>
                 </div>
