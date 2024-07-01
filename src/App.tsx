@@ -10,14 +10,14 @@ import PatientDashboardView from "./views/patient/dashboard/PatientDashboard";
 import AppProvider, { useApp } from "./providers/AppProvider";
 
 function ProtectedRoute(props: { role: 'patient' | 'doctor' }) {
-  const { role } = props;
-  const { employeeId, customerId } = useApp();
-  if (role === 'doctor' && typeof employeeId !== 'number') {
-    return <Navigate to="/" />
-  }
-  else if (role === 'patient' && typeof customerId !== 'number') {
-    return <Navigate to="/" />
-  }
+  // const { role } = props;
+  // const { employeeId, customerId } = useApp();
+  // if (role === 'doctor' && typeof employeeId !== 'number') {
+  //   return <Navigate to="/" />
+  // }
+  // else if (role === 'patient' && typeof customerId !== 'number') {
+  //   return <Navigate to="/" />
+  // }
   return <Outlet />
 }
 function App() {

@@ -12,22 +12,9 @@ interface Props {
 }
 
 const PatientReportBar: React.FC<Props> = ({ patientId }) => {
-  const [reportsData, setReportsData] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState('notes');
   const api = useApi();
 
-  const getPatientIOTReports = async () => {
-    try {
-      const { data } = await api.get(`reports?patient_id=${patientId}`);
-      setReportsData(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    getPatientIOTReports();
-  }, []);
 
   return (
     <div className={styles.patientReportContainer}>
@@ -47,10 +34,10 @@ const PatientReportBar: React.FC<Props> = ({ patientId }) => {
               patientId={patientId}
             />
           </>}
-          {activeTab === 'referrals' && <TabContent data={reportsData} type="REFERRALS" />}
-          {activeTab === 'labs' && <TabContent data={reportsData} type="LABS" />}
-          {activeTab === 'erx' && <TabContent data={reportsData} type="eRX" />}
-          {activeTab === 'images' && <TabContent data={reportsData} type="IMAGE" />}
+          {activeTab === 'referrals' && <TabContent patientId={patientId} type="REFERRALS" />}
+          {activeTab === 'labs' && <TabContent patientId={patientId} type="LABS" />}
+          {activeTab === 'erx' && <TabContent patientId={patientId} type="eRX" />}
+          {activeTab === 'images' && <TabContent patientId={patientId} type="IMAGE" />}
         </div>
       </div>
     </div>

@@ -7,8 +7,15 @@
   overflow: hidden;
   padding: 5px;
   border: 1px solid #566f9e;
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
+  width: 100%;
 }
+@media (max-width: 575px) {
+  .root {
+    width: 92%;
+  }
+}
+
 .videoCallRoot {
   display: flex;
   align-items: center;
@@ -20,11 +27,7 @@
   background-color: #eaddff;
   margin-bottom: 60px;
 }
-@media (max-width: 768px) {
-  .root {
-    margin-bottom: 120px;
-  }
-}
+
 .input::-webkit-scrollbar {
   display: none;
 }

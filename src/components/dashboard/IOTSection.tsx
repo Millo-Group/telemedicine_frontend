@@ -11,6 +11,7 @@ interface Props {
 
 const IOTSection: React.FC<Props> = ({ patientId }) => {
   let [IOTData, setIOTData] = useState<any>([]);
+  const [activeTab, setActiveTab] = useState<string>("TEMPERATURE")
   const api = useApi();
   const getPatientIOTReports = async () => {
     try {
@@ -22,7 +23,6 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
         timestamp: string;
         value: number;
       }>(`iot?patient_id=${patientId}`);
-      console.log(data, "data");
       setIOTData(data);
     } catch (error) {
       console.log(error);
@@ -33,7 +33,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
     setTimeout(() => {
       getPatientIOTReports();
     }, 600);
-  }, []);
+  }, [activeTab]);
   return (
     <>
       <div className="row">
@@ -76,6 +76,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                       href="#home8"
                         role="tab"
                       aria-selected="true"
+                      onClick={()=>setActiveTab("TEMPERATURE")}
                     >
                       <span className="material-symbols-outlined mds-24">
                         thermostat
@@ -90,6 +91,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                       href="#profile8"
                       role="tab"
                       aria-selected="false"
+                      onClick={()=>setActiveTab("BP")}
                     >
                       <span className="material-symbols-outlined mds-24">
                         cardiology
@@ -103,6 +105,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                       data-bs-toggle="tab"
                       href="#messages15"
                       role="tab"
+                      onClick={()=>setActiveTab("BP")}
                     >
                       <span className="material-symbols-outlined mds-24">
                         blood_pressure
@@ -116,6 +119,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                       data-bs-toggle="tab"
                       href="#messages16"
                       role="tab"
+                      onClick={()=>setActiveTab("PO2")}
                     >
                       <span className="material-symbols-outlined mds-24">
                         spo2
