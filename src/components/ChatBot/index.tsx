@@ -32,11 +32,13 @@ function ChatBot() {
         }
         <div className={styles.chat_end} />
       </div>
+      <div className={styles.footer}>
       <div className="p-1 fs-6">
         &copy; {new Date().getFullYear()} <a href="#">Infinity Clinic</a>. All Rights Reserved.
       </div>
-      <div className={styles.footer}>
-        <ChatInput handleSend={setMessage} eventId={eventId} />
+      <div className={styles.chatInput}>
+      <ChatInput handleSend={setMessage} eventId={eventId} />
+      </div>
       </div>
     </div>
   );

@@ -77,7 +77,7 @@ const PlanNoteModal: React.FC<props> = ({
             id="exampleModal5"
             aria-labelledby="exampleModalLabel5"
             aria-hidden="true"
-            style={{ display: "block" }}
+            style={{ display: "block", zIndex: "9999" }}
           >
             <div className="modal-dialog mx-auto" style={{ maxWidth: "65%" }}>
               <div className="modal-content">

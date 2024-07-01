@@ -83,7 +83,7 @@ const SubjectiveNoteModal: React.FC<Props> = ({
             id="exampleModal2"
             aria-labelledby="exampleModalLabel2"
             aria-hidden="true"
-            style={{ display: "block" }}
+            style={{ display: "block", zIndex: "9999"  }}
           >
             <div className="modal-dialog mx-auto" style={{ maxWidth: "65%" }}>
               <div className="modal-content">

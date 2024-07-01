@@ -26692,6 +26692,7 @@ Height property
   transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   margin-left: 16.875rem;
   z-index: 820;
+  padding-bottom: 63px;
 }
 
 .main-footer {
