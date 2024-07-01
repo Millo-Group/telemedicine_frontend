@@ -6,6 +6,7 @@ import BPItem from "../DashboardElements/BPItem";
 import PO2Item from "../DashboardElements/POItem";
 import TemperatureItem from "../DashboardElements/TemperatueItem";
 import styles from './index.module.css'
+import Spinner from "../../Spinner";
 interface Props {
   patientId: string;
 }
@@ -145,10 +146,8 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                       }
                       {
                         loading && <div className={styles.spinner}>
-                            <div role="status" className={`spinner-border`}> 
-                        <span className="sr-only"></span>
-                      </div>
-                        </div> 
+                        <Spinner/>
+                    </div> 
                       }
                   </div>
                   <div className="tab-pane " id="profile8" role="tabpanel">
@@ -166,9 +165,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                       }
                        {
                         loading && <div className={styles.spinner}>
-                        <div role="status" className={`spinner-border`}> 
-                    <span className="sr-only"></span>
-                  </div>
+                        <Spinner/>
                     </div> 
                       }
                   </div>
@@ -181,9 +178,7 @@ const IOTSection: React.FC<Props> = ({ patientId }) => {
                       }
                        {
                         loading && <div className={styles.spinner}>
-                        <div role="status" className={`spinner-border`}> 
-                    <span className="sr-only"></span>
-                  </div>
+                        <Spinner/>
                     </div> 
                       }
                   </div>

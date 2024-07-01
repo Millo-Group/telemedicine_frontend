@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import XrayImg from "../../assets/images/x-ray.png"; // Adjust the path accordingly
 import { useApi } from "../../hooks/useApi";
 import styles from './index.module.css'
+import Spinner from "../Spinner";
 interface TabContentProps {
   patientId: string;
   type: string;
@@ -35,11 +36,7 @@ const TabContent: React.FC<TabContentProps> = ({ patientId, type }) => {
         {
           loading ?
             <>
-              <div className={styles.spinner}>
-                <div role="status" className={`spinner-border`}>
-                  <span className="sr-only"></span>
-                </div>
-              </div>
+              <Spinner/>
             </> :
             <>
               {reportsData?.map((el: any) => {
