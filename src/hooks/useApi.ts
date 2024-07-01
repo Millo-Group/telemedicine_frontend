@@ -2,8 +2,8 @@ import axios from "axios";
 import * as cryptoService from "../services/crypto";
 
 function useApi() {
-  // const baseURL = "https://telemedicine-backend.infinityclinic.co/api";
-  const baseURL = "http://127.0.0.1:5000/api";
+  const baseURL = "https://telemedicine-backend.infinityclinic.co/api";
+  // const baseURL = "http://127.0.0.1:5000/api";
   const headers = {
     "Access-Control-Allow-Headers": "Content-Type",
     "Content-Type": "application/json",
@@ -20,10 +20,10 @@ function useApi() {
       const data = cryptoService.encrypted(JSON.stringify(config.data));
       config.data = { data };
     }
-    return config; 
+    return config;
   });
 
   return instance;
 }
 
-export{ useApi};
+export { useApi };
