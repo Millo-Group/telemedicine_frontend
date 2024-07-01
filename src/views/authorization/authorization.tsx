@@ -14,7 +14,7 @@ type AuthPayload = {
 function Authorization() {
   const api = useApi();
   const [searchParams] = useSearchParams();
-  const { setCustomerId, setEmployeeId, setTokens, setEventId, employeeId, customerId, eventId } = useApp();
+  const { setCustomerId, setEmployeeId, setTokens, setEventId, employeeId, customerId, eventId, token } = useApp();
 
   const navigate = useNavigate();
   const event_id = searchParams.get("event_id") || eventId?.toString();
@@ -26,6 +26,11 @@ function Authorization() {
       setCustomerId(params.customer_id);
       setEmployeeId(params.employee_id);
       setEventId(params.event_id)
+      Object.keys(params).forEach((item) => {
+        if (typeof params[item as keyof AuthPayload] === 'undefined') {
+          delete params[item as keyof AuthPayload];
+        }
+      })
       const { data } = await api.post<{
         token: string;
         jitsi_jwt: string;
